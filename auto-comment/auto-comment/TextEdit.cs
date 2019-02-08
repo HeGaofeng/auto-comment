@@ -12,7 +12,7 @@ namespace auto_comment
         {
             wholetext = wholetext.Remove('\t'); //premahva vsichki tabove ot texta
             string[] splittext = wholetext.Split('\n'); //vrushta array ot stringove kato vseki ot tozi string suvpada s redovete
-            return splittext;
+            return splittext; //just to push smth
         }
     }
 }
