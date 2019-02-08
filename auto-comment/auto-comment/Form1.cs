@@ -51,7 +51,7 @@ namespace auto_comment
                 if (split_curr[0].Contains(element))
                 {
                     return_string = "Variable found is " + element;
-                    return_from_linecheker = return_string;//get the foken value, copy paste this shit
+                    return_from_linecheker = return_string;//gets the foken value, copy paste this shit
                     return return_string;
                 }
             }
