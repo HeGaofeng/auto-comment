@@ -37,7 +37,7 @@ namespace auto_comment
         }
         public static string LineTypeChecker(string curr)
         {
-            string return_string = null;
+            string return_string = "";
             string[] split_curr = curr.Split(' ', '.');
             if(split_curr[0] == "int" || split_curr[0] == "double" || split_curr[0] == "float" || split_curr[0] == "string" || split_curr[0] == "char")
             {
@@ -54,6 +54,7 @@ namespace auto_comment
                 return_string = "Console";
                 return return_string;
             }
+            return null;
         }
 
         //public static string StringCreator(string need)
