@@ -34,14 +34,15 @@
             // 
             // btn_comment
             // 
+            this.btn_comment.BackColor = System.Drawing.Color.Transparent;
             this.btn_comment.BackgroundImage = global::auto_comment.Properties.Resources.icons8_note_512;
             this.btn_comment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_comment.Location = new System.Drawing.Point(116, 12);
+            this.btn_comment.Location = new System.Drawing.Point(12, 12);
             this.btn_comment.Name = "btn_comment";
-            this.btn_comment.Size = new System.Drawing.Size(213, 139);
+            this.btn_comment.Size = new System.Drawing.Size(164, 105);
             this.btn_comment.TabIndex = 0;
             this.btn_comment.Text = "Comment";
-            this.btn_comment.UseVisualStyleBackColor = true;
+            this.btn_comment.UseVisualStyleBackColor = false;
             this.btn_comment.Click += new System.EventHandler(this.btn_comment_Click);
             // 
             // btn_open
