@@ -39,12 +39,16 @@ namespace auto_comment
         {
             string return_string = "";
             string[] split_curr = curr.Split(' ', '.');
-            if(split_curr[0] == "int" || split_curr[0] == "double" || split_curr[0] == "float" || split_curr[0] == "string" || split_curr[0] == "char")
+            string[] check_these = {"int", "double", "float", "string","char" };
+            foreach (string element in check_these)
             {
-                return_string = "Variable";
-                return return_string;
+                if (split_curr[0].Contains(element))
+                {
+                    return_string = "Variable found is " + element;
+                    return return_string;
+                }
             }
-            else if(split_curr[0] == "for")
+            if(split_curr[0] == "for")
             {
                 return_string = "For";
                 return return_string;

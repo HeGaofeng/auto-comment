@@ -34,6 +34,8 @@
             // 
             // btn_comment
             // 
+            this.btn_comment.BackgroundImage = global::auto_comment.Properties.Resources.icons8_note_512;
+            this.btn_comment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_comment.Location = new System.Drawing.Point(116, 12);
             this.btn_comment.Name = "btn_comment";
             this.btn_comment.Size = new System.Drawing.Size(213, 139);

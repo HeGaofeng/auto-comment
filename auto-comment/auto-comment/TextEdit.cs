@@ -21,7 +21,7 @@ namespace auto_comment
         }
         public static string DestroyLine(string wholetext, int index)
         {
-            string[] splittext = Split(wholetext); 
+            string[] splittext = Split(wholetext);
             splittext[index] = "";
             wholetext = splittext.ToString();
             return wholetext;
