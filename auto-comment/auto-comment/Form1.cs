@@ -27,17 +27,12 @@ namespace auto_comment
         {
             //put input string when you make it
             string[] vremenen_input = { "int n = int.Parse(Console.ReadLine())", "int z = int.Parse(Console.ReadLine())", "for(int i = 0; i<n; i++)", "{", "z+=1", "}", "Console.WriteLine(z)" };
-<<<<<<< HEAD
-            for(int i = 0; i < vremenen_input.Length; i++)
-=======
             int input_lenght = vremenen_input.Length;
             for(int i = 0; i<input_lenght; i++)//feeds linetype checker evry line
->>>>>>> 85b07e9a3a9cdb3edf3498b08ed375a9e8e47208
             {
                 LineTypeChecker(vremenen_input[i]);
                 return_from_stringcreator = return_from_linecheker;
                 StringCreator(return_from_stringcreator);
-                test = "fuck";
             }
             
         }
