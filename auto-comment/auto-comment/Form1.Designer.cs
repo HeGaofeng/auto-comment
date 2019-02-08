@@ -40,6 +40,7 @@
             this.btn_comment.TabIndex = 0;
             this.btn_comment.Text = "Comment";
             this.btn_comment.UseVisualStyleBackColor = true;
+            this.btn_comment.Click += new System.EventHandler(this.btn_comment_Click);
             // 
             // btn_open
             // 
@@ -49,6 +50,7 @@
             this.btn_open.TabIndex = 1;
             this.btn_open.Text = "open";
             this.btn_open.UseVisualStyleBackColor = true;
+            this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
             // 
             // Form1
             // 
