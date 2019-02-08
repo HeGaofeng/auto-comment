@@ -12,6 +12,8 @@ namespace auto_comment
 {
     public partial class Form1 : Form
     {
+        static string return_from_linecheker = "";//string used to store linecheckerretrun return value
+        static string return_from_stringcreator = "";//string used to store stringcreator return value
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +31,9 @@ namespace auto_comment
             for(int i = 0; i<input_lenght; i++)//feeds linetype checker evry line
             {
                 LineTypeChecker(vremenen_input[i]);
-                need_second_function = return_string; 
+                return_from_stringcreator = return_from_linecheker;
+                StringCreator(return_from_stringcreator);
+                test = "fuck";
             }
             
         }
@@ -42,7 +46,8 @@ namespace auto_comment
             {
                 if (split_curr[0].Contains(element))
                 {
-                    return_string = "Variable found is " + element; 
+                    return_string = "Variable found is " + element;
+                    return_from_linecheker = return_string;//get the foken value, copy paste this shit
                     return return_string;
                 }
             }
