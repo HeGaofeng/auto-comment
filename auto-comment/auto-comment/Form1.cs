@@ -28,12 +28,38 @@ namespace auto_comment
         {
             //put input string when you make it
             string[] vremenen_input = { "int n = int.Parse(Console.ReadLine())", "int z = int.Parse(Console.ReadLine())", "for(int i = 0; i<n; i++)", "{", "z+=1", "}", "Console.WriteLine(z)" };
+            int input_lenght = vremenen_input.Length;
+            for(int i = 0; i<input_lenght; i++)
+            {
+                LineTypeChecker(vremenen_input[i]);
+            }
             LineTypeChecker(vremenen_input[0]);
         }
         public static string LineTypeChecker(string curr)
         {
-            if (curr.Contains("int")) ;
+            string return_string = null;
+            string[] split_curr = curr.Split(' ', '.');
+            if(split_curr[0] == "int" || split_curr[0] == "double" || split_curr[0] == "float" || split_curr[0] == "string" || split_curr[0] == "char")
+            {
+                return_string = "Variable";
+                return return_string;
+            }
+            else if(split_curr[0] == "for")
+            {
+                return_string = "For";
+                return return_string;
+            }
+            else if(split_curr[0] == "Console")
+            {
+                return_string = "Console";
+                return return_string;
+            }
         }
+
+        //public static string StringCreator(string need)
+        //{
+
+        //}
     }
 
 }
