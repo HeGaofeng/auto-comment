@@ -138,11 +138,18 @@ namespace auto_comment
 
         private void btn_options_Click(object sender, EventArgs e)
         {
-            Form Options = new Form();
-            Options.Name = "Options";
-            Options.Width = 500;
-            Options.Height = 500;
-            Options.Show();
+            ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
+            Options_DropDown.Items.AddRange(new Object[] { "Override selected file.",
+                "Create a copy of the selected file at selected location.",
+                "Copy the commented version to clipboard."}); //dobavqme opciite kum drop down menuto
+            Options_DropDown.Location = new Point(400, 287);
+            Options_DropDown.SetBounds(401, 290, 171, 23);
+            this.Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
+            if (Options_DropDown.SelectedIndex > -1)
+            {
+                Options_DropDown.Hide();
+                this.Controls.Remove(Options_DropDown);
+            }
         }
     }
 }
