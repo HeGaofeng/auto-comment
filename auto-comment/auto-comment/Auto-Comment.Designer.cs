@@ -96,7 +96,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Auto-Comment";
             this.ResumeLayout(false);
             this.PerformLayout();
 
