@@ -14,17 +14,7 @@ namespace auto_comment
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            string text = "i tell u wah t you fat little cunt       i will soft pick you" +
-                "bas \n eat 4 am faggot";
-            string[] test = TextEdit.Split(text);
-            foreach(string elemnt in test)
-            {
-                MessageBox.Show(elemnt);
-            }
-            
+            //empty boi
         }
     }
 }
