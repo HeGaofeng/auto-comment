@@ -17,7 +17,8 @@ namespace auto_comment
         static string return_from_linecheker = "";//string used to store linecheckerretrun return value
         static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
         static string text = ""; //text received from the user
-        static string[] split_curr;
+        static string[] split_curr;//moge da e bezpolezno 
+        static string curr_extract;
 
         public Form1()
         {
@@ -74,10 +75,12 @@ namespace auto_comment
                 LineTypeChecker(input[i]);
                 //return_from_stringcreator = return_from_linecheker;
                 StringCreator_selector;
+                //parvo entervame lina, posle chekjvame typa, posle izpolzvame za tozi tip 
             }           
         }
         public static string LineTypeChecker(string curr)
         {
+            curr_extract = curr;
             string return_string = "";
             split_curr = curr.Split(' ', '.');
             string[] check_these = {"int", "double", "float", "string","char" };
@@ -112,14 +115,26 @@ namespace auto_comment
         }
         public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
-            split_curr[0] = 
+            string variable_commenetd_string = "";
+            //string line_commented_variable = "";
+            //string comment = "//This is a {0} type variable, the value is entered by the user." + split_curr[0];
+            if (curr_extract.Contains("Console.ReadLine()"))
+            {
+                variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is entered by the user.";
+            }
+            else
+            {
+                variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is " + split_curr[1];
+            }
+            //string variable_comment_string = "This is a {0} type variable, it is equal to ";
+            //curr_extract =  
             return null;
         }
         public static string StringCreator_selector(string selector_input_string)
         {
             return selector_input_string;
         }
-
+        
         private static string[] GetText() //pulni array s texta vzet ot user
         {
             if (text == "")
