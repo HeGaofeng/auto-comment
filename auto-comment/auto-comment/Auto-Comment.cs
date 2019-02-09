@@ -19,6 +19,7 @@ namespace auto_comment
         static string text = ""; //text received from the user
         static string[] split_curr;
         static string curr_copy;
+        static string commeneted_variable_string_global;
 
         public Form1()
         {
@@ -116,10 +117,12 @@ namespace auto_comment
             if (curr_copy.Contains("Console.ReadLine") == true)
             {
                 commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is entered by the user.";
+                commeneted_variable_string_global = commeneted_variable_string;
             }
             else
             {
                 commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to " + split_curr[1];
+                commeneted_variable_string_global = commeneted_variable_string;
             }
             return null;
         }
@@ -129,7 +132,7 @@ namespace auto_comment
         }
         public static string CommenetedLineWriter(string commented_line_input)
         {
-
+            DialogResult test = MessageBox.Show(commeneted_variable_string_global);
             return commented_line_input;
         }
 
