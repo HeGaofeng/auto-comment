@@ -17,7 +17,7 @@ namespace auto_comment
         static string return_from_linecheker = "";//string used to store linecheckerretrun return value
         static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
         static string text = ""; //text received from the user
-        string[] split_curr_global = new string[]
+        string[] split_curr;
 
         public Form1()
         {
@@ -79,7 +79,7 @@ namespace auto_comment
         public static string LineTypeChecker(string curr)
         {
             string return_string = "";
-            string[] split_curr = curr.Split(' ', '.');
+            split_curr = curr.Split(' ', '.');
             string[] check_these = {"int", "double", "float", "string","char" };
             foreach (string element in check_these)
             {
