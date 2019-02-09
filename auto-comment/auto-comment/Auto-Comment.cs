@@ -17,7 +17,7 @@ namespace auto_comment
         static string return_from_linecheker = "";//string used to store linecheckerretrun return value
         static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
         static string text = ""; //text received from the user
-        string[] split_curr;
+        static string[] split_curr;
 
         public Form1()
         {
