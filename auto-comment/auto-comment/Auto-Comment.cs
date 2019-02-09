@@ -117,9 +117,10 @@ namespace auto_comment
         {
             return selector_input_string;
         }
-        public static string CommenetedLineWriter(string vremeno)
+        public static string CommenetedLineWriter(string commented_line_input)
         {
-            return vremeno;
+
+            return commented_line_input;
         }
 
         private static string[] GetText() //pulni array s texta vzet ot user
