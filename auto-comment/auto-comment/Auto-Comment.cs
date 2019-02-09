@@ -72,6 +72,8 @@ namespace auto_comment
             for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
             {
                 LineTypeChecker(input[i]);
+                StringCreator_variable(return_from_linecheker);
+                CommenetedLineWriter(null);
                 //return_from_stringcreator = return_from_linecheker;
                 //StringCreator_selector;
             }           
