@@ -62,7 +62,7 @@ namespace auto_comment
                 }
             }
         }
-        private void btn_comment_Click(object sender, EventArgs e)
+        private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf edi se
         {
             string[] input = GetText();
             //put input string when you make it
