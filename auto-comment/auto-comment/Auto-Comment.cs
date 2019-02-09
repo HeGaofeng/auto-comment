@@ -19,9 +19,10 @@ namespace auto_comment
         static string text = ""; //text received from the user
         static string[] split_curr;
         static string curr_copy;
+        static string commeneted_variable_string_global;
         static ComboBox Options_DropDown;
 
-    public Form1()
+        public Form1()
         {
             InitializeComponent();
         }
@@ -72,6 +73,8 @@ namespace auto_comment
             for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
             {
                 LineTypeChecker(input[i]);
+                StringCreator_variable(return_from_linecheker);
+                CommenetedLineWriter(null);
                 //return_from_stringcreator = return_from_linecheker;
                 //StringCreator_selector;
             }           
@@ -80,7 +83,7 @@ namespace auto_comment
         {
             curr_copy = curr;
             string return_string = "";
-            split_curr = curr.Split(' ', '.');
+            split_curr = curr.Split(' ', '.', ';');
             string[] check_these = {"int", "double", "float", "string","char" };
             foreach (string element in check_these)
             {
@@ -116,11 +119,15 @@ namespace auto_comment
             string commeneted_variable_string = "";
             if (curr_copy.Contains("Console.ReadLine") == true)
             {
-                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is entered by the user.";
+                commeneted_variable_string = " //This is " + split_curr[1] + " a " + split_curr[0] + " type variable and it is entered by the user.";
+                commeneted_variable_string_global = commeneted_variable_string;
             }
             else
             {
-                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to " + split_curr[1];
+                //int inx_equals = curr_copy.IndexOf(@"=");
+                //int inx_needed = 
+                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to " + split_curr[3];
+                commeneted_variable_string_global = commeneted_variable_string;
             }
             return null;
         }
@@ -130,7 +137,13 @@ namespace auto_comment
         }
         public static string CommenetedLineWriter(string commented_line_input)
         {
-
+            DialogResult test = MessageBox.Show(commeneted_variable_string_global);
+            /*
+            if(split_curr[4] == "")//this check shows that when the ; is split into the last of split_curr it is empty and making a check if it is empty returns true
+            {
+                DialogResult test2 = MessageBox.Show("yee");
+            }
+            */
             return commented_line_input;
         }
 
@@ -149,7 +162,7 @@ namespace auto_comment
 
         private void btn_options_Click(object sender, EventArgs e)
         {
-            Options_DropDown = new ComboBox(); //pravim novo drop down menu
+            ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
             
             //Build a list
             var dataSource = new List<Options_Items>();            
