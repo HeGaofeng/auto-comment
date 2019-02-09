@@ -14,13 +14,11 @@ namespace auto_comment
 {
     public partial class Form1 : Form
     {
-        static string return_from_linecheker = "";//string used to store linecheckerretrun return value
-        static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
+        static string return_from_linecheker = ""; //string used to store linecheckerretrun return values
         static string text = ""; //text received from the user
         static string[] split_curr;
         static string curr_copy;
         static string commeneted_variable_string_global;
-        static ComboBox Options_DropDown;
 
         public Form1()
         {
@@ -179,14 +177,6 @@ namespace auto_comment
             Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
 
             Options_DropDown.SetBounds(401, 290, 171, 23);
-
-            /*
-            Options_DropDown.Items.AddRange(new Object[] {
-                "Override selected file.", //dobavqme opciite kum drop down menuto
-                "Create a copy of the selected file at selected location.",
-                "Copy the commented version to clipboard."});
-            Options_DropDown.SetBounds(401, 290, 171, 23);
-            */
 
             if (Options_DropDown.SelectedIndex != 0)
             {
