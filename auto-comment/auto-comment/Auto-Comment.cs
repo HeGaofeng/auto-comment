@@ -20,7 +20,6 @@ namespace auto_comment
         static string curr_copy;
         static string commeneted_variable_string_global;
         static string commeneted_using_string_global;
-        static string 
 
         public Form1()
         {
@@ -98,7 +97,7 @@ namespace auto_comment
             if(split_curr[0] == "for")
             {
                 return_string = "For";
-                return_from_linecheker = return_string;
+                return_from_linecheker = return_string;//maiche e neshto staro de ne se izpolzva, vikai ot tuka funciata?
                 return return_string;
             }
             else if(split_curr[0] == "Console")
