@@ -32,14 +32,18 @@
             this.btn_open = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_twitter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_comment
             // 
+            this.btn_comment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_comment.BackColor = System.Drawing.Color.Transparent;
             this.btn_comment.BackgroundImage = global::auto_comment.Properties.Resources.icons8_note_512;
             this.btn_comment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_comment.Location = new System.Drawing.Point(345, 96);
+            this.btn_comment.Location = new System.Drawing.Point(345, 77);
             this.btn_comment.Name = "btn_comment";
             this.btn_comment.Size = new System.Drawing.Size(207, 207);
             this.btn_comment.TabIndex = 0;
@@ -48,10 +52,13 @@
             // 
             // btn_open
             // 
+            this.btn_open.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_open.BackColor = System.Drawing.Color.Transparent;
             this.btn_open.BackgroundImage = global::auto_comment.Properties.Resources.OpenCode;
             this.btn_open.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_open.Location = new System.Drawing.Point(43, 96);
+            this.btn_open.Location = new System.Drawing.Point(45, 77);
             this.btn_open.Name = "btn_open";
             this.btn_open.Size = new System.Drawing.Size(207, 207);
             this.btn_open.TabIndex = 1;
@@ -71,6 +78,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -81,6 +89,19 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Auto-Comment";
             // 
+            // btn_twitter
+            // 
+            this.btn_twitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_twitter.BackgroundImage = global::auto_comment.Properties.Resources.twitter_logo_2;
+            this.btn_twitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_twitter.Location = new System.Drawing.Point(517, 293);
+            this.btn_twitter.Name = "btn_twitter";
+            this.btn_twitter.Size = new System.Drawing.Size(50, 50);
+            this.btn_twitter.TabIndex = 4;
+            this.btn_twitter.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btn_twitter.UseVisualStyleBackColor = true;
+            this.btn_twitter.Click += new System.EventHandler(this.btn_twitter_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -89,14 +110,16 @@
             this.BackgroundImage = global::auto_comment.Properties.Resources.backgrondcode;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(584, 357);
+            this.Controls.Add(this.btn_twitter);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_open);
             this.Controls.Add(this.btn_comment);
+            this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Form1";
             this.Text = "Auto-Comment";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +131,7 @@
         private System.Windows.Forms.Button btn_open;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_twitter;
     }
 }
 
