@@ -68,8 +68,6 @@ namespace auto_comment
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
             string[] input = GetText();
-            //put input string when you make it
-            //string[] vremenen_input = { "int n = int.Parse(Console.ReadLine())", "int z = int.Parse(Console.ReadLine())", "for(int i = 0; i<n; i++)", "{", "z+=1", "}", "Console.WriteLine(z)" };
             for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
             {
                 LineTypeChecker(input[i]);
