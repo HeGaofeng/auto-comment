@@ -71,7 +71,7 @@ namespace auto_comment
             {
                 LineTypeChecker(input[i]);
                 //return_from_stringcreator = return_from_linecheker;
-                StringCreator_selector;
+                //StringCreator_selector;
             }           
         }
         public static string LineTypeChecker(string curr)
@@ -110,7 +110,7 @@ namespace auto_comment
         }
         public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
-            split_curr[0] = 
+            //split_curr[0] = 
             return null;
         }
         public static string StringCreator_selector(string selector_input_string)
@@ -129,6 +129,16 @@ namespace auto_comment
                 string[] return_text = TextEdit.Split(text);
                 return return_text;
             }
+        }
+
+        private void btn_options_Click(object sender, EventArgs e)
+        {
+            Form Options = new Form();
+            Options.Name = "Options";
+            Label test = new Label();
+            test.Text = "Testing";
+            test.SetBounds(15,15,50,50);
+            Options.Show();
         }
     }
 }
