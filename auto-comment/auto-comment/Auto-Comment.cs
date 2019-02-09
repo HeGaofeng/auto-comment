@@ -19,8 +19,9 @@ namespace auto_comment
         static string text = ""; //text received from the user
         static string[] split_curr;
         static string curr_copy;
+        static ComboBox Options_DropDown;
 
-        public Form1()
+    public Form1()
         {
             InitializeComponent();
         }
@@ -148,18 +149,38 @@ namespace auto_comment
 
         private void btn_options_Click(object sender, EventArgs e)
         {
-            ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
-            Options_DropDown.Items.AddRange(new Object[] { "Override selected file.",
-                "Create a copy of the selected file at selected location.",
-                "Copy the commented version to clipboard."}); //dobavqme opciite kum drop down menuto
-            Options_DropDown.Location = new Point(400, 287);
+            Options_DropDown = new ComboBox(); //pravim novo drop down menu
+            
+            //Build a list
+            var dataSource = new List<Options_Items>();            
+            dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });
+            dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });
+            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location."});
+            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard."});
+
+            //Setup data binding
+            Options_DropDown.DataSource = dataSource;
+            Options_DropDown.DisplayMember = "Commentmethod";
+
+            // make it readonly
+            Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
+
             Options_DropDown.SetBounds(401, 290, 171, 23);
-            this.Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
-            if (Options_DropDown.SelectedIndex > -1)
+
+            /*
+            Options_DropDown.Items.AddRange(new Object[] {
+                "Override selected file.", //dobavqme opciite kum drop down menuto
+                "Create a copy of the selected file at selected location.",
+                "Copy the commented version to clipboard."});
+            Options_DropDown.SetBounds(401, 290, 171, 23);
+            */
+
+            if (Options_DropDown.SelectedIndex != 0)
             {
-                Options_DropDown.Hide();
-                this.Controls.Remove(Options_DropDown);
+                Controls.Remove(Options_DropDown);
             }
+
+            this.Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
         }
     }
 }
