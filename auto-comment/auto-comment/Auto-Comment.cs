@@ -15,8 +15,9 @@ namespace auto_comment
     public partial class Form1 : Form
     {
         static string return_from_linecheker = "";//string used to store linecheckerretrun return value
-        static string return_from_stringcreator = "";//string used to store stringcreator return value
+        static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
         static string text = ""; //text received from the user
+        string[] split_curr_global = new string[]
 
         public Form1()
         {
@@ -27,6 +28,7 @@ namespace auto_comment
         {
             ProcessStartInfo sInfo = new ProcessStartInfo("https://twitter.com/FLasersights"); //slagame linka koito iskame da otvorim tuk
             Process.Start(sInfo); //otvara goreposochenia link s default browsera (tozi koito potrebitelq e izbral kato default za negovia comp)
+            //ivailo ti shiban idiot, ti si napravil tazi funcia i ako a pipnesh otnovo i ta se schupi shete ubia, big gay faggot
         }
 
         private void btn_open_Click(object sender, EventArgs e)
@@ -70,10 +72,9 @@ namespace auto_comment
             for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
             {
                 LineTypeChecker(input[i]);
-                return_from_stringcreator = return_from_linecheker;
-                StringCreator(return_from_stringcreator);
-            }
-            
+                //return_from_stringcreator = return_from_linecheker;
+                StringCreator_selector;
+            }           
         }
         public static string LineTypeChecker(string curr)
         {
@@ -92,23 +93,31 @@ namespace auto_comment
             if(split_curr[0] == "for")
             {
                 return_string = "For";
+                return_from_linecheker = return_string;
                 return return_string;
             }
             else if(split_curr[0] == "Console")
             {
                 return_string = "Console";
+                return_from_linecheker = return_string;
+                return return_string;
+            }
+            else if(split_curr[0] == "if")
+            {
+                return_string = "If";
+                return_from_linecheker = return_string;
                 return return_string;
             }
             return null;
         }
-        public static string StringCreator(string need_second_function)
+        public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
-            return "";
+            split_curr[0] = 
+            return null;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        public static string StringCreator_selector(string selector_input_string)
         {
-
+            return selector_input_string;
         }
 
         private static string[] GetText() //pulni array s texta vzet ot user
