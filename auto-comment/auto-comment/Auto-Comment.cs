@@ -18,6 +18,7 @@ namespace auto_comment
         static string return_from_stringcreator_selector = "";//string used to store stringcreator return value
         static string text = ""; //text received from the user
         static string[] split_curr;
+        static string curr_copy;
 
         public Form1()
         {
@@ -76,6 +77,7 @@ namespace auto_comment
         }
         public static string LineTypeChecker(string curr)
         {
+            curr_copy = curr;
             string return_string = "";
             split_curr = curr.Split(' ', '.');
             string[] check_these = {"int", "double", "float", "string","char" };
@@ -110,7 +112,15 @@ namespace auto_comment
         }
         public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
-            //split_curr[0] = 
+            string commeneted_variable_string = "";
+            if (curr_copy.Contains("Console.ReadLine") == true)
+            {
+                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is entered by the user.";
+            }
+            else
+            {
+                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to " + split_curr[1];
+            }
             return null;
         }
         public static string StringCreator_selector(string selector_input_string)
