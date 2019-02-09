@@ -14,7 +14,10 @@ namespace auto_comment
         [STAThread]
         static void Main()
         {
-            //empty boi
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+            //dont remove anything above this line
         }
     }
 }

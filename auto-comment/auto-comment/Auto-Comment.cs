@@ -139,10 +139,8 @@ namespace auto_comment
         {
             Form Options = new Form();
             Options.Name = "Options";
-            Label test = new Label();
             Options.Width = 500;
             Options.Height = 500;
-            test.Text = "Testing";
             Options.Show();
         }
     }
