@@ -20,6 +20,8 @@ namespace auto_comment
         static string[] split_curr;
         static string curr_copy;
         static string commeneted_variable_string_global;
+        static string commeneted_using_string_global;
+        static string 
 
         public Form1()
         {
@@ -82,8 +84,9 @@ namespace auto_comment
         {
             curr_copy = curr;
             string return_string = "";
+            string return_using = "";
             split_curr = curr.Split(' ', '.', ';');
-            string[] check_these = {"int", "double", "float", "string","char" };
+            string[] check_these = {"int", "double", "float", "string","char", "using"};
             foreach (string element in check_these)
             {
                 if (split_curr[0].Contains(element))
@@ -111,6 +114,12 @@ namespace auto_comment
                 return_from_linecheker = return_string;
                 return return_string;
             }
+            if (split_curr[0] == "using")
+            {
+                return_string = "using";
+                return_from_linecheker = return_using;
+                return return_string;
+            }
             return null;
         }
         public static string StringCreator_variable(string StringCreator_variable_input_string)
@@ -129,6 +138,13 @@ namespace auto_comment
                 commeneted_variable_string_global = commeneted_variable_string;
             }
             return null;
+        }
+        public static string StringCreator_using(string selector_input_using)
+        {
+            string commeneted_using_string = curr_copy + " //Adds library";
+            commeneted_using_string_global = commeneted_using_string;
+            DialogResult test2 = MessageBox.Show(commeneted_using_string_global);
+            return selector_input_using;
         }
         public static string StringCreator_selector(string selector_input_string)
         {
