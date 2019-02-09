@@ -72,7 +72,7 @@ namespace auto_comment
             {
                 LineTypeChecker(input[i]);
                 //return_from_stringcreator = return_from_linecheker;
-                StringCreator_selector;
+                StringCreator_selector(null);
                 //parvo entervame lina, posle chekjvame typa, posle izpolzvame za tozi tip 
             }           
         }
@@ -118,15 +118,14 @@ namespace auto_comment
             //string comment = "//This is a {0} type variable, the value is entered by the user." + split_curr[0];
             if (curr_extract.Contains("Console.ReadLine()"))
             {
-                variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is entered by the user.";
+                return variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is entered by the user.";
             }
             else
             {
-                variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is " + split_curr[1];
+                return variable_commenetd_string = curr_extract + " //This is a " + split_curr[0] + " type variable, the value is " + split_curr[1];
             }
             //string variable_comment_string = "This is a {0} type variable, it is equal to ";
             //curr_extract =  
-            return null;
         }
         public static string StringCreator_selector(string selector_input_string)
         {
