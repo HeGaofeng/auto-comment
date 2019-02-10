@@ -46,6 +46,8 @@ namespace auto_comment
 
             Options_DropDown.SetBounds(401, 290, 171, 23);
 
+            Saved_Option.Click += new System.EventHandler(this.btn_Save_Preferences_Click);
+
             Saved_Option.Name = "btn_Save_Preferences";
             Saved_Option.Text = "Save";
             Saved_Option.SetBounds(401, 316, 75, 23);

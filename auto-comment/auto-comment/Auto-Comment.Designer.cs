@@ -134,10 +134,6 @@
             this.Text = "Auto-Comment";
             this.ResumeLayout(false);
             this.PerformLayout();
-            //
-            // btn_Save_Preferences
-            //
-            this.Saved_Option.Click += new System.EventHandler(this.btn_Save_Preferences_Click);
 
         }
 
