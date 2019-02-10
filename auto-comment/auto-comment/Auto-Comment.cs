@@ -20,10 +20,43 @@ namespace auto_comment
         static string curr_copy;
         static string commeneted_variable_string_global;
         static string commeneted_using_string_global;
+        ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
+        Button Saved_Option = new Button();
 
         public Form1()
         {
             InitializeComponent();
+
+            //Everything below is used for the options menu
+            // \/\/\/\/\/\/
+            //
+            //Build a list
+            var dataSource = new List<Options_Items>();
+            dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });                                   //0
+            dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });                                    //1
+            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location." });    //2
+            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard." });                    //3
+
+            //Setup data binding
+            Options_DropDown.DataSource = dataSource;
+            Options_DropDown.DisplayMember = "Commentmethod";
+
+            // make it readonly
+            Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            Options_DropDown.SetBounds(401, 290, 171, 23);
+
+            Saved_Option.Name = "btn_Save_Preferences";
+            Saved_Option.Text = "Save";
+            Saved_Option.SetBounds(401, 316, 75, 23);
+            Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
+            Controls.Add(Saved_Option);
+
+            Options_DropDown.Visible = false;
+            Saved_Option.Visible = false;
+            //
+            // /\/\/\/\/\/\/\/\
+            //Everything above is used for the options menu
         }
 
         private void btn_twitter_Click(object sender, EventArgs e)
@@ -175,30 +208,23 @@ namespace auto_comment
 
         private void btn_options_Click(object sender, EventArgs e)
         {
-            ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
-            
-            //Build a list
-            var dataSource = new List<Options_Items>();            
-            dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });
-            dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });
-            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location."});
-            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard."});
+            Options_DropDown.Visible = true;
+            Saved_Option.Visible = true;
+        }
 
-            //Setup data binding
-            Options_DropDown.DataSource = dataSource;
-            Options_DropDown.DisplayMember = "Commentmethod";
-
-            // make it readonly
-            Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            Options_DropDown.SetBounds(401, 290, 171, 23);
-
+        private void btn_Save_Preferences_Click(object sender, EventArgs e)
+        {
             if (Options_DropDown.SelectedIndex != 0)
             {
-                Controls.Remove(Options_DropDown);
+                int picked_option = Options_DropDown.SelectedIndex;
+                Options_DropDown.Visible = false;
+                Saved_Option.Visible = false;
             }
-
-            this.Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
+            else
+            {
+                string Warning_Message = "Please choose an option";
+                MessageBox.Show(Warning_Message);
+            }
         }
     }
 }
