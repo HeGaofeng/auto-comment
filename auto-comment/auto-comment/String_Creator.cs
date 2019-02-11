@@ -33,7 +33,7 @@ namespace auto_comment
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
-            string return_string = "";
+            string[] return_string = new string[curr_copy.Length];
             string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
             foreach (string element in curr_copy) //minava prez vseki red v koda
             {
@@ -41,12 +41,12 @@ namespace auto_comment
                 {
                     if (element.Contains(check_these[i])) //dobavq komentar v string
                     {
-                        return_string += "//Variable found is " + check_these[i] + '\n';
+                        return_string[i] = "//Variable found is " + check_these[i] + '\n';
                         break;
                     }
                     else
                     {
-                        return_string += "//Nothing found here \n";
+                        return_string[i] = "//Nothing found here \n";
                         break;
                     }
                 }
