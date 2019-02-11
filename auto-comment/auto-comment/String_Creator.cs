@@ -21,14 +21,6 @@ namespace auto_comment
         static string[] curr_copy;
         static string commeneted_variable_string_global;
         static string commeneted_using_string_global;
-        //tuka noiv neshta opitvam
-        static bool isUsing = false;
-        static bool isInt = false;
-        static bool isString = false;
-        static bool isFloat = false;
-        static bool isDouble = false;
-        static bool isBool = false;
-        static bool isConsole = false;
         static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
         static int keyword_location = 0;
 
@@ -58,76 +50,6 @@ namespace auto_comment
                 curr_copy[i] += ' ' + return_string[i];
             }
             return curr_copy.ToString();
-            //reee
-            /*
-            if (split_curr[0] == "using")
-            {
-                isUsing = true;
-            }
-            else if (split_curr[0] == "int")
-            {
-                isInt = true;
-            }
-            else if (split_curr[0] == "string")
-            {
-                isString = true;
-            }
-            else if (split_curr[0] == "float")
-            {
-                isFloat = true;
-            }
-            else if (split_curr[0] == "double")
-            {
-                isDouble = true;
-            }
-            else if (split_curr[0] == "bool")
-            {
-                isBool = true;
-            }
-            else if (split_curr[0] == "Console")
-            {
-                isConsole = true;
-            }
-            //if(split_curr[0] == "for")
-            //{
-            //    return_string = "For";
-            //    return_from_linecheker = return_string;//maiche e neshto staro de ne se izpolzva, vikai ot tuka funciata?
-
-            //    return return_string;
-            //}
-            //else if(split_curr[0] == "Console")
-            //{
-            //    return_string = "Console";
-            //    return_from_linecheker = return_string;
-            //    return return_string;
-            //}
-            //else if(split_curr[0] == "if")
-            //{
-            //    return_string = "If";
-            //    return_from_linecheker = return_string;
-            //    return return_string;
-            //}
-            //if (split_curr[0] == "using")
-            //{
-            //    //tva maiche trebva taka da go prenapishem
-            //    return_string = "using";
-            //    return_from_linecheker_using = curr_copy;
-            //    return return_using;
-            //}
-            return null;
-            */
-        }
-        public static string BoolCheckerAndFunctionCaller(string BoolCheckerAndFunctionCaller_null)
-        {
-            if (isUsing == true)
-            {
-                StringCreator_using(null);
-            }
-            if (isInt == true)
-            {
-
-            }
-            return BoolCheckerAndFunctionCaller_null;
         }
         public static string StringCreator_using(string selector_input_using)
         {
@@ -165,12 +87,6 @@ namespace auto_comment
         public static string CommenetedLineWriter(string commented_line_input)
         {
             DialogResult test = MessageBox.Show(commeneted_variable_string_global);
-            /*
-            if(split_curr[4] == "")//this check shows that when the ; is split into the last of split_curr it is empty and making a check if it is empty returns true
-            {
-                DialogResult test2 = MessageBox.Show("yee");
-            }
-            */
             return commented_line_input;
         }
 
