@@ -217,11 +217,11 @@ namespace auto_comment
             DialogResult test2 = MessageBox.Show(commeneted_using_string_global);
             return selector_input_using;
         }
-        public static string String_creator_int(String_creator_int_null)
+        public static string String_creator_int(string String_creator_int_null)
         {
+
             return String_creator_int_null;
         }
-
         public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
             string commeneted_variable_string = "";
