@@ -30,7 +30,7 @@ namespace auto_comment
         static bool isBool = false;
         static bool isConsole = false;
         static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
-        static int index_keyword = 0;
+        static int keyword_location = 0;
 
         public static string GetCommentedVersion(string curr)
         {
