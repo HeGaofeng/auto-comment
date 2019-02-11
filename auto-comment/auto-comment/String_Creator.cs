@@ -8,6 +8,6 @@ namespace auto_comment
 {
     class String_Creator
     {
-
+        int
     }
 }
