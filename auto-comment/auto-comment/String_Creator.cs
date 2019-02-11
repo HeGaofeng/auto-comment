@@ -21,29 +21,32 @@ namespace auto_comment
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
-            string return_string = "";
-            foreach (string element in curr_copy) //minava prez vseki red v koda
+            string[] return_string = new string[curr_copy.Length];
+            string result = "";
+            for (int i = 0; i < curr_copy.Length; i++) //minava prez vseki red v koda
             {
-                for (int i = 0; i < check_these.Length; i++) //provera dali reda sadurja nqkoa duma ot check_these
+                for (int j = 0; j < check_these.Length; j++) //provera dali reda sadurja nqkoa duma ot check_these
                 {
-                    if (element.Contains(check_these[i])) //dobavq komentar v string
+                    if (curr_copy[i].Contains(check_these[j])) //dobavq komentar v string
                     {
                         keyword_location = i; //namira na koi index ot check these e keyworda v nachaloto
-                        return_string += "//Variable found is " + check_these[i] + '\n';
-                        break;
-                    }
-                    else
-                    {
-                        return_string += "//Nothing found here \n";
+                        return_string[i] = " //Variable found is " + check_these[j] + '\n';
                         break;
                     }
                 }
             }
             for (int i = 0; i < curr_copy.Length; i++)
             {
-                curr_copy[i] += ' ' + return_string[i];
+                if (return_string[i] != null)
+                {
+                    result += curr_copy[i] + return_string[i];
+                }
+                else
+                {
+                    continue;
+                }
             }
-            return curr_copy.ToString();
+            return result;
         }
         public static string StringCreator_using(string selector_input_using)
         {
