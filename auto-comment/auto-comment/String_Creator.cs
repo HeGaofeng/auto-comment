@@ -30,7 +30,7 @@ namespace auto_comment
         static bool isBool = false;
         static bool isConsole = false;
 
-        public static string LineTypeChecker(string curr)
+        public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
             string return_string = "";
@@ -41,10 +41,16 @@ namespace auto_comment
                 {
                     if (element.Contains(check_these[i]))
                     {
-                        return_string = "Variable found is " + element;
+                        return_string += "//Variable found is " + check_these[i] + '\n';
+                    }
+                    else
+                    {
+                        return_string += "//Nothing found here \n";
                     }
                 }
             }
+            return return_string;
+            /*
             if (split_curr[0] == "using")
             {
                 isUsing = true;
@@ -100,6 +106,7 @@ namespace auto_comment
             //    return return_using;
             //}
             return null;
+            */
         }
         public static string BoolCheckerAndFunctionCaller(string BoolCheckerAndFunctionCaller_null)
         {
