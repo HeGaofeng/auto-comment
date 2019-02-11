@@ -18,7 +18,7 @@ namespace auto_comment
         static string return_from_linecheker_using = ""; //reeeee maiche e muda
         static string text = ""; //text received from the user
         static string[] split_curr;
-        static string curr_copy;
+        static string[] curr_copy;
         static string commeneted_variable_string_global;
         static string commeneted_using_string_global;
         //tuka noiv neshta opitvam
@@ -32,46 +32,44 @@ namespace auto_comment
 
         public static string LineTypeChecker(string curr)
         {
-            curr_copy = curr;
+            curr_copy = TextEdit.Split(curr);
             string return_string = "";
-            //split_curr = curr.Split(' ', '.', ';');
-            split_curr = curr.Split(' ', '.');
             string[] check_these = { "int", "double", "float", "string", "char", "using" };
-            foreach (string element in check_these)
+            foreach (string element in curr_copy)
             {
-                //testing
-                if (split_curr[0].Contains(element))
+                for (int i = 0; i < check_these.Length; i++)
                 {
-                    return_string = "Variable found is " + element;
-                    return_from_linecheker = return_string;//gets the foken value, copy paste this shit
-                    return return_string;
+                    if (element.Contains(check_these[i]))
+                    {
+                        return_string = "Variable found is " + element;
+                    }
                 }
             }
             if (split_curr[0] == "using")
             {
                 isUsing = true;
             }
-            if (split_curr[0] == "int")
+            else if (split_curr[0] == "int")
             {
                 isInt = true;
             }
-            if (split_curr[0] == "string")
+            else if (split_curr[0] == "string")
             {
                 isString = true;
             }
-            if (split_curr[0] == "float")
+            else if (split_curr[0] == "float")
             {
                 isFloat = true;
             }
-            if (split_curr[0] == "double")
+            else if (split_curr[0] == "double")
             {
                 isDouble = true;
             }
-            if (split_curr[0] == "bool")
+            else if (split_curr[0] == "bool")
             {
                 isBool = true;
             }
-            if (split_curr[0] == "Console")
+            else if (split_curr[0] == "Console")
             {
                 isConsole = true;
             }
