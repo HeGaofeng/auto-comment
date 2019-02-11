@@ -100,16 +100,8 @@ namespace auto_comment
         }
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
-            string[] input = GetText();
-            for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
-            {
-                LineTypeChecker(input[i]);
-                //StringCreator_using(null);
-                StringCreator_variable(return_from_linecheker);
-                CommenetedLineWriter(null);
-                //return_from_stringcreator = return_from_linecheker;
-                //StringCreator_selector;
-            }           
+            text = String_Creator.GetCommentedVersion(text);
+            MessageBox.Show(text);
         }
 
         private void btn_options_Click(object sender, EventArgs e)

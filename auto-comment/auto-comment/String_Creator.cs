@@ -41,15 +41,21 @@ namespace auto_comment
                 {
                     if (element.Contains(check_these[i])) //dobavq komentar v string
                     {
-                        return_string += "//Variable found is " + check_these[i] + '\n'; 
+                        return_string += "//Variable found is " + check_these[i] + '\n';
+                        break;
                     }
                     else
                     {
                         return_string += "//Nothing found here \n";
+                        break;
                     }
                 }
             }
-            return return_string;
+            for (int i = 0; i < curr_copy.Length; i++)
+            {
+                curr_copy[i] += ' ' + return_string[i];
+            }
+            return curr_copy.ToString();
             /*
             if (split_curr[0] == "using")
             {
