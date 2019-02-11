@@ -34,7 +34,6 @@ namespace auto_comment
         {
             curr_copy = curr;
             string return_string = "";
-            string return_using = "";
             //split_curr = curr.Split(' ', '.', ';');
             split_curr = curr.Split(' ', '.');
             string[] check_these = { "int", "double", "float", "string", "char", "using" };

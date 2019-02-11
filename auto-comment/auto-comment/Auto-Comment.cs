@@ -98,8 +98,6 @@ namespace auto_comment
             }
             DialogResult file_selected = MessageBox.Show("File Selected");
         }
-
-        /*
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
             string[] input = GetText();
@@ -113,7 +111,6 @@ namespace auto_comment
                 //StringCreator_selector;
             }           
         }
-        */
 
         private void btn_options_Click(object sender, EventArgs e)
         {
