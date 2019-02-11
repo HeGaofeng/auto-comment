@@ -14,7 +14,6 @@ namespace auto_comment
 {
     public partial class Form1 : Form
     {
-        static string return_from_linecheker = ""; //string used to store linecheckerretrun return values
         static string text = ""; //text received from the user
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
         Button Saved_Option = new Button();
@@ -30,8 +29,8 @@ namespace auto_comment
             var dataSource = new List<Options_Items>();
             dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });                                   //0
             dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });                                    //1
-            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location." });    //2
-            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard." });                    //3
+            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location." });   //2
+            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard." });                   //3
 
             //Setup data binding
             Options_DropDown.DataSource = dataSource;
@@ -98,10 +97,12 @@ namespace auto_comment
             }
             DialogResult file_selected = MessageBox.Show("File Selected");
         }
+
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
             text = String_Creator.GetCommentedVersion(text);
             MessageBox.Show(text);
+            Clipboard.SetText(text);
         }
 
         private void btn_options_Click(object sender, EventArgs e)
