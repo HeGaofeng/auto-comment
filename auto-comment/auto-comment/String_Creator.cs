@@ -34,14 +34,14 @@ namespace auto_comment
         {
             curr_copy = TextEdit.Split(curr);
             string return_string = "";
-            string[] check_these = { "int", "double", "float", "string", "char", "using" };
-            foreach (string element in curr_copy)
+            string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
+            foreach (string element in curr_copy) //minava prez vseki red v koda
             {
-                for (int i = 0; i < check_these.Length; i++)
+                for (int i = 0; i < check_these.Length; i++) //provera dali reda sadurja nqkoa duma ot check_these
                 {
-                    if (element.Contains(check_these[i]))
+                    if (element.Contains(check_these[i])) //dobavq komentar v string
                     {
-                        return_string += "//Variable found is " + check_these[i] + '\n';
+                        return_string += "//Variable found is " + check_these[i] + '\n'; 
                     }
                     else
                     {
