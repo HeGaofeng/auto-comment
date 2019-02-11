@@ -48,5 +48,43 @@ namespace auto_comment
             }
             return result;
         }
+        public static string StringCreator_using(string selector_input_using)
+        {
+            string commeneted_using_string = return_from_linecheker_using + " //Adds library";
+            commeneted_using_string_global = commeneted_using_string;
+            DialogResult test2 = MessageBox.Show(commeneted_using_string_global);
+            return selector_input_using;
+        }
+        public static string String_creator_int(string String_creator_int_null)
+        {
+
+            return String_creator_int_null;
+        }
+        public static string StringCreator_variable(string StringCreator_variable_input_string)
+        {
+            string commeneted_variable_string = "";
+            if (curr_copy.Contains("Console.ReadLine") == true)
+            {
+                commeneted_variable_string = " //This is " + split_curr[1] + " a " + split_curr[0] + " type variable and it is entered by the user.";
+                commeneted_variable_string_global = commeneted_variable_string;
+            }
+            else
+            {
+                //int inx_equals = curr_copy.IndexOf(@"=");
+                //int inx_needed = 
+                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to ";
+                commeneted_variable_string_global = commeneted_variable_string;
+            }
+            return null;
+        }
+        public static string StringCreator_selector(string selector_input_string)
+        {
+            return selector_input_string;
+        }
+        public static string CommenetedLineWriter(string commented_line_input)
+        {
+            DialogResult test = MessageBox.Show(commeneted_variable_string_global);
+            return commented_line_input;
+        }
     }
 }
