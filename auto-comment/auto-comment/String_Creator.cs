@@ -14,13 +14,7 @@ namespace auto_comment
 {
     class String_Creator
     {
-        static string return_from_linecheker = ""; //string used to store linecheckerretrun return values
-        static string return_from_linecheker_using = ""; //reeeee maiche e muda
-        static string text = ""; //text received from the user
-        static string[] split_curr;
         static string[] curr_copy;
-        static string commeneted_variable_string_global;
-        static string commeneted_using_string_global;
         static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
         static int keyword_location = 0;
 
