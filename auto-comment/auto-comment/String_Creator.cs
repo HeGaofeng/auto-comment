@@ -42,7 +42,7 @@ namespace auto_comment
                 {
                     if (element.Contains(check_these[i])) //dobavq komentar v string
                     {
-                        index_keyword = i; //namira na koi index ot check these e keyworda v nachaloto
+                        keyword_location = i; //namira na koi index ot check these e keyworda v nachaloto
                         return_string += "//Variable found is " + check_these[i] + '\n';
                         break;
                     }
