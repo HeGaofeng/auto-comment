@@ -129,8 +129,7 @@ namespace auto_comment
             curr_copy = curr;
             string return_string = "";
             string return_using = "";
-            //split_curr = curr.Split(' ', '.', ';');
-            split_curr = curr.Split(' ', '.');
+            split_curr = curr.Split(' ', '.', ';', '[');
             string[] check_these = {"int", "double", "float", "string","char", "using"};
             foreach (string element in check_these)
             {
@@ -198,6 +197,10 @@ namespace auto_comment
             //}
             return null;
         }
+        public static string[] GetCurr_split()
+        {
+            return split_curr;
+        }
         public static string BoolCheckerAndFunctionCaller(string BoolCheckerAndFunctionCaller_null)
         {
             if(isUsing == true)
@@ -219,7 +222,6 @@ namespace auto_comment
         }
         public static string String_creator_int(string String_creator_int_null)
         {
-
             return String_creator_int_null;
         }
         public static string StringCreator_variable(string StringCreator_variable_input_string)
