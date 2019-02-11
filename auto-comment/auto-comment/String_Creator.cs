@@ -29,18 +29,20 @@ namespace auto_comment
         static bool isDouble = false;
         static bool isBool = false;
         static bool isConsole = false;
+        static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
+        static int index_keyword = 0;
 
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
             string return_string = "";
-            string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
             foreach (string element in curr_copy) //minava prez vseki red v koda
             {
                 for (int i = 0; i < check_these.Length; i++) //provera dali reda sadurja nqkoa duma ot check_these
                 {
                     if (element.Contains(check_these[i])) //dobavq komentar v string
                     {
+                        index_keyword = i;//namira na koi index ot check these e namerenia keyword
                         return_string += "//Variable found is " + check_these[i] + '\n'; 
                     }
                     else
