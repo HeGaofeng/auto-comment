@@ -15,11 +15,20 @@ namespace auto_comment
     public partial class Form1 : Form
     {
         static string return_from_linecheker = ""; //string used to store linecheckerretrun return values
+        static string return_from_linecheker_using = ""; //reeeee maiche e muda
         static string text = ""; //text received from the user
         static string[] split_curr;
         static string curr_copy;
         static string commeneted_variable_string_global;
         static string commeneted_using_string_global;
+        //tuka noiv neshta opitvam
+        static bool isUsing = false;
+        static bool isInt = false;
+        static bool isString = false;
+        static bool isFloat = false;
+        static bool isDouble = false;
+        static bool isBool = false;
+        static bool isConsole = false;
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
         Button Saved_Option = new Button();
 
@@ -100,6 +109,7 @@ namespace auto_comment
                     }
                 }
             }
+            DialogResult file_selected = MessageBox.Show("File Selected");
         }
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
@@ -107,6 +117,7 @@ namespace auto_comment
             for(int i = 0; i < input.Length; i++)//feeds linetype checker every line
             {
                 LineTypeChecker(input[i]);
+                //StringCreator_using(null);
                 StringCreator_variable(return_from_linecheker);
                 CommenetedLineWriter(null);
                 //return_from_stringcreator = return_from_linecheker;
@@ -118,10 +129,12 @@ namespace auto_comment
             curr_copy = curr;
             string return_string = "";
             string return_using = "";
-            split_curr = curr.Split(' ', '.', ';');
+            //split_curr = curr.Split(' ', '.', ';');
+            split_curr = curr.Split(' ', '.');
             string[] check_these = {"int", "double", "float", "string","char", "using"};
             foreach (string element in check_these)
             {
+                //testing
                 if (split_curr[0].Contains(element))
                 {
                     return_string = "Variable found is " + element;
@@ -129,32 +142,86 @@ namespace auto_comment
                     return return_string;
                 }
             }
-            if(split_curr[0] == "for")
+            if(split_curr[0] == "using")
             {
-                return_string = "For";
-                return_from_linecheker = return_string;//maiche e neshto staro de ne se izpolzva, vikai ot tuka funciata?
-                return return_string;
+                isUsing = true;
             }
-            else if(split_curr[0] == "Console")
+            if(split_curr[0] == "int")
             {
-                return_string = "Console";
-                return_from_linecheker = return_string;
-                return return_string;
+                isInt = true;
             }
-            else if(split_curr[0] == "if")
+            if(split_curr[0] == "string")
             {
-                return_string = "If";
-                return_from_linecheker = return_string;
-                return return_string;
+                isString = true;
             }
-            if (split_curr[0] == "using")
+            if(split_curr[0] == "float")
             {
-                return_string = "using";
-                return_from_linecheker = return_using;
-                return return_string;
+                isFloat = true;
             }
+            if(split_curr[0] == "double")
+            {
+                isDouble = true;
+            }
+            if(split_curr[0] == "bool")
+            {
+                isBool = true;
+            }
+            if(split_curr[0] == "Console")
+            {
+                isConsole = true;
+            }
+            //if(split_curr[0] == "for")
+            //{
+            //    return_string = "For";
+            //    return_from_linecheker = return_string;//maiche e neshto staro de ne se izpolzva, vikai ot tuka funciata?
+
+            //    return return_string;
+            //}
+            //else if(split_curr[0] == "Console")
+            //{
+            //    return_string = "Console";
+            //    return_from_linecheker = return_string;
+            //    return return_string;
+            //}
+            //else if(split_curr[0] == "if")
+            //{
+            //    return_string = "If";
+            //    return_from_linecheker = return_string;
+            //    return return_string;
+            //}
+            //if (split_curr[0] == "using")
+            //{
+            //    //tva maiche trebva taka da go prenapishem
+            //    return_string = "using";
+            //    return_from_linecheker_using = curr_copy;
+            //    return return_using;
+            //}
             return null;
         }
+        public static string BoolCheckerAndFunctionCaller(string BoolCheckerAndFunctionCaller_null)
+        {
+            if(isUsing == true)
+            {
+                StringCreator_using(null);
+            }
+            if(isInt == true)
+            {
+
+            }
+            return BoolCheckerAndFunctionCaller_null;
+        }
+        public static string StringCreator_using(string selector_input_using)
+        {
+            string commeneted_using_string = return_from_linecheker_using + " //Adds library";
+            commeneted_using_string_global = commeneted_using_string;
+            DialogResult test2 = MessageBox.Show(commeneted_using_string_global);
+            return selector_input_using;
+        }
+        public static string String_creator_int(String_creator_int_null)
+        {
+            return String_creator_int_null;
+        }
+
         public static string StringCreator_variable(string StringCreator_variable_input_string)
         {
             string commeneted_variable_string = "";
@@ -167,17 +234,10 @@ namespace auto_comment
             {
                 //int inx_equals = curr_copy.IndexOf(@"=");
                 //int inx_needed = 
-                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to " + split_curr[3];
+                commeneted_variable_string = " //This is a " + split_curr[0] + " type variable and it is currently equal to ";
                 commeneted_variable_string_global = commeneted_variable_string;
             }
             return null;
-        }
-        public static string StringCreator_using(string selector_input_using)
-        {
-            string commeneted_using_string = curr_copy + " //Adds library";
-            commeneted_using_string_global = commeneted_using_string;
-            DialogResult test2 = MessageBox.Show(commeneted_using_string_global);
-            return selector_input_using;
         }
         public static string StringCreator_selector(string selector_input_string)
         {
