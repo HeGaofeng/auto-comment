@@ -17,6 +17,7 @@ namespace auto_comment
         static string text = ""; //text received from the user
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
         Button Saved_Option = new Button();
+        int picked_option = 0;
 
         public Form1()
         {
@@ -101,8 +102,27 @@ namespace auto_comment
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
             text = String_Creator.GetCommentedVersion(text);
-            Clipboard.SetText(text);
-            MessageBox.Show(text);
+            if (picked_option == 0)
+            {
+                string Warning_Message = "Please choose an option from the \"Options\" Menu in the bottom right corner.";
+                MessageBox.Show(Warning_Message);
+            }
+            else if (picked_option == 1)
+            {
+                //to do
+            }
+            else if (picked_option == 2)
+            {
+                //to do
+            }
+            else if (picked_option == 3)
+            {
+                Clipboard.SetText(text);
+            }
+            else
+            {
+                MessageBox.Show(text);
+            }
         }
 
         private void btn_options_Click(object sender, EventArgs e)
@@ -115,7 +135,7 @@ namespace auto_comment
         {
             if (Options_DropDown.SelectedIndex != 0)
             {
-                int picked_option = Options_DropDown.SelectedIndex;
+                picked_option = Options_DropDown.SelectedIndex;
                 Options_DropDown.Visible = false;
                 Saved_Option.Visible = false;
             }
