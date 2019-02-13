@@ -40,8 +40,8 @@ namespace auto_comment
                         keyword_found = check_these[j]; //namerenia keyword (s dumi a ne indeksa mu)
                         split_sentence = TextEdit.SplitLine(curr_copy[i]); //razdela tokushtia red na array ot dumi
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
-                        //return_string[i] = " //Variable found is " + check_these[j] + '\n';
                         break;
+                        //return_string[i] = " //Variable found is " + check_these[j] + '\n';
                     }
                 }
             }
