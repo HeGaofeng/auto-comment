@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace auto_comment
 {
@@ -17,6 +18,12 @@ namespace auto_comment
         {
             string[] splittext = Split(wholetext); 
             return splittext[index];
+        }
+        public static string[] SplitLine(string line)
+        {
+            Regex pattern = new Regex(@"\s");
+            string[] splitsentence = pattern.Split(line);
+            return splitsentence;
         }
         public static string DestroyLine(string wholetext, int index)
         {

@@ -101,8 +101,8 @@ namespace auto_comment
         private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
         {
             text = String_Creator.GetCommentedVersion(text);
-            MessageBox.Show(text);
             Clipboard.SetText(text);
+            MessageBox.Show(text);
         }
 
         private void btn_options_Click(object sender, EventArgs e)
