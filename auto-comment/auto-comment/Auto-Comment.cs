@@ -113,7 +113,7 @@ namespace auto_comment
             }
             else if (picked_option == 2) //Create a copy of the selected file at selected location.
             {
-                //to do
+                string path = @""
             }
             else if (picked_option == 3) //Copy the commented version to clipboard.
             {
