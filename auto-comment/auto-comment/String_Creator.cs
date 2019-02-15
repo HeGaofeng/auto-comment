@@ -40,6 +40,8 @@ namespace auto_comment
             }
             for (int i = 0; i < curr_copy.Length; i++)
             {
+                //problema idva ili ot tuk ili ot text edit (i tam ima komentar)
+                //ako e ot tuk si nqmam i na predstava zashto
                 if (return_string[i] != null)
                 {
                     result += curr_copy[i] + return_string[i];
