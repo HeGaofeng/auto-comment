@@ -119,10 +119,7 @@ namespace auto_comment
             {
                 Clipboard.SetText(text);
             }
-            else
-            {
-                MessageBox.Show(text);
-            }
+            MessageBox.Show(text);
         }
 
         private void btn_options_Click(object sender, EventArgs e)

@@ -162,7 +162,7 @@ namespace auto_comment
 
         private static string CommenetedLineWriter(string commented_line_input)
         {
-            DialogResult test = MessageBox.Show();
+            DialogResult test = MessageBox.Show(commeneted_variable_string_global);
             return commented_line_input;
         }
     }
