@@ -16,7 +16,6 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
-        static string[] split_curr;
         static string commeneted_variable_string_global = "";
         static string keyword_found = "";
         static string[] split_sentence;
@@ -65,96 +64,103 @@ namespace auto_comment
             string var_value = "";
             string comment = "";
 
-            if (var_type == "int")
+            if (split_sentence.Contains("//"))
             {
-                for (int i = 0; i < split_sentence.Length; i++)
-                {
-                    if (split_sentence[i] == var_type)
-                    {
-                        indexofkeyword = i;
-                        var_name = split_sentence[i + 1];
-                    }
-                    if (split_sentence[i] == "=")
-                    {
-                        var_value = split_sentence[i + 1];
-                    }
-                }
-                comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
-                return comment;
+                return "";
             }
-            //down from here is probably not working and requires testing
-            else if (var_type == "double")
+            else
             {
-                for (int i = 0; i < split_sentence.Length; i++)
+                if (var_type == "int")
                 {
-                    if (split_sentence[i] == var_type)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        indexofkeyword = i;
-                        var_name = split_sentence[i + 1];
+                        if (split_sentence[i] == var_type)
+                        {
+                            indexofkeyword = i;
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
                     }
-                    if (split_sentence[i] == "=")
-                    {
-                        var_value = split_sentence[i + 1];
-                    }
+                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    return comment;
                 }
-                comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
-                return comment;
-            }
-            else if (var_type == "float")
-            {
-                for (int i = 0; i < split_sentence.Length; i++)
+                //down from here is probably not working and requires testing
+                else if (var_type == "double")
                 {
-                    if (split_sentence[i] == var_type)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        indexofkeyword = i;
-                        var_name = split_sentence[i + 1];
+                        if (split_sentence[i] == var_type)
+                        {
+                            indexofkeyword = i;
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
                     }
-                    if (split_sentence[i] == "=")
-                    {
-                        var_value = split_sentence[i + 1];
-                    }
+                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    return comment;
                 }
-                comment = "//The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + '\n';
-                return comment;
-            }
-            else if (var_type == "string")
-            {
-                for (int i = 0; i < split_sentence.Length; i++)
+                else if (var_type == "float")
                 {
-                    if (split_sentence[i] == var_type)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        indexofkeyword = i;
-                        var_name = split_sentence[i + 1];
+                        if (split_sentence[i] == var_type)
+                        {
+                            indexofkeyword = i;
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
                     }
-                    if (split_sentence[i] == "=")
-                    {
-                        var_value = split_sentence[i + 1];
-                    }
+                    comment = "//The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    return comment;
                 }
-                comment = "//The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + '\n';
-                return comment;
-            }
-            else if (var_type == "char")
-            {
-                for (int i = 0; i < split_sentence.Length; i++)
+                else if (var_type == "string")
                 {
-                    if (split_sentence[i] == var_type)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        indexofkeyword = i;
-                        var_name = split_sentence[i + 1];
+                        if (split_sentence[i] == var_type)
+                        {
+                            indexofkeyword = i;
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
                     }
-                    if (split_sentence[i] == "=")
-                    {
-                        var_value = split_sentence[i + 1];
-                    }
+                    comment = "//The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    return comment;
                 }
-                comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + '\n';
-                return comment;
-            }
-            else if (var_type == "using")
-            {
-                comment = "//Here we are declaring a namespace" + '\n';
-                return comment;
+                else if (var_type == "char")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            indexofkeyword = i;
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    return comment;
+                }
+                else if (var_type == "using")
+                {
+                    comment = "//Here we are declaring a namespace" + '\n';
+                    return comment;
+                }
             }
 
             return null; //no matter what it should never return null but I put it here just in case

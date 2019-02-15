@@ -18,6 +18,7 @@ namespace auto_comment
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
         Button Saved_Option = new Button();
         int picked_option = 0;
+        string filePath = string.Empty;
 
         public Form1()
         {
@@ -28,10 +29,10 @@ namespace auto_comment
             //
             //Build a list
             var dataSource = new List<Options_Items>();
-            dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });                                   //0
-            dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });                                    //1
-            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file at selected location." });   //2
-            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard." });                   //3
+            dataSource.Add(new Options_Items() { Commentmethod = "Please select an option." });                 //0
+            dataSource.Add(new Options_Items() { Commentmethod = "Override selected file." });                  //1
+            dataSource.Add(new Options_Items() { Commentmethod = "Create a copy of the selected file." });      //2
+            dataSource.Add(new Options_Items() { Commentmethod = "Copy the commented version to clipboard." }); //3
 
             //Setup data binding
             Options_DropDown.DataSource = dataSource;
@@ -40,13 +41,13 @@ namespace auto_comment
             // make it readonly
             Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            Options_DropDown.SetBounds(401, 290, 171, 23);
+            Options_DropDown.SetBounds(345, 290, 207, 23);
 
             Saved_Option.Click += new System.EventHandler(this.btn_Save_Preferences_Click);
 
             Saved_Option.Name = "btn_Save_Preferences";
             Saved_Option.Text = "Save";
-            Saved_Option.SetBounds(381, 316, 105, 23);
+            Saved_Option.SetBounds(345, 316, 75, 23);
             Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
             Controls.Add(Saved_Option);
 
@@ -69,7 +70,7 @@ namespace auto_comment
             //ot tuk nadolu vsichko e copy pasta taka che nz kolko e dobro
             this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
             var fileContent = string.Empty;
-            var filePath = string.Empty;
+            filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -107,11 +108,11 @@ namespace auto_comment
                 string Warning_Message = "Please choose an option from the \"Options\" Menu in the bottom right corner.";
                 MessageBox.Show(Warning_Message);
             }
-            else if (picked_option == 1) //overwrite slected file
+            else if (picked_option == 1) //Overwrite selected file.
             {
                 //to do
             }
-            else if (picked_option == 2) //Create a copy of the selected file at selected location.
+            else if (picked_option == 2) //Create a copy of the selected file.
             {
                 //to do
             }

@@ -106,7 +106,7 @@
             // btn_options
             // 
             this.btn_options.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_options.Location = new System.Drawing.Point(497, 316);
+            this.btn_options.Location = new System.Drawing.Point(477, 317);
             this.btn_options.Name = "btn_options";
             this.btn_options.Size = new System.Drawing.Size(75, 23);
             this.btn_options.TabIndex = 5;
