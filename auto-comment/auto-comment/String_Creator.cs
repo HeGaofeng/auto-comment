@@ -87,7 +87,7 @@ namespace auto_comment
                                 var_value = split_sentence[i + 1];
                             }
                         }
-                        comment = " //The integer array (a whole numbers array) " + var_name + " is declared." + '\n';
+                        comment = " //The integer array (a whole numbers array) " + var_name + " is declared." + Environment.NewLine;
                         return comment;
                     }
                     else
@@ -104,7 +104,7 @@ namespace auto_comment
                                 var_value = split_sentence[i + 1];
                             }
                         }
-                        comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                        comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                         return comment;
                     }
                 }
@@ -123,7 +123,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float")
@@ -140,7 +140,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string")
@@ -157,7 +157,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "char")
@@ -174,12 +174,12 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "using")
                 {
-                    comment = " //Here we are declaring a namespace" + '\n';
+                    comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
             }

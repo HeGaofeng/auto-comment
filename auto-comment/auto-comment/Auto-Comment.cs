@@ -15,7 +15,7 @@ namespace auto_comment
 {
     public partial class Form1 : Form
     {
-        static string text = ""; //text received from the user
+        string text = string.Empty; //text received from the user
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
         Button Saved_Option = new Button();
         int picked_option = 0;
@@ -129,7 +129,8 @@ namespace auto_comment
             {
                 Clipboard.SetText(text);
             }
-            MessageBox.Show(text);
+            //MessageBox.Show(text);
+            text = string.Empty;
         }
 
         private void btn_options_Click(object sender, EventArgs e)
