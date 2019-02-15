@@ -111,7 +111,10 @@ namespace auto_comment
             }
             else if (picked_option == 1) //Overwrite selected file.
             {
-                //to do
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine(text);
+                }
             }
             else if (picked_option == 2) //Create a copy of the selected file.
             {
