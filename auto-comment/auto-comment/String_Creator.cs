@@ -16,10 +16,10 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
-        static string commeneted_variable_string_global = "";
-        static string keyword_found = "";
+        static string commeneted_variable_string_global = string.Empty;
+        static string keyword_found = string.Empty;
         static string[] split_sentence;
-        static string result = "";
+        static string result = string.Empty;
 
         public static string GetCommentedVersion(string curr)
         {
@@ -72,20 +72,41 @@ namespace auto_comment
             {
                 if (var_type == "int")
                 {
-                    for (int i = 0; i < split_sentence.Length; i++)
+                    if (split_sentence.Contains("["))
                     {
-                        if (split_sentence[i] == var_type)
+                        var_type += "[]";
+                        for (int i = 0; i < split_sentence.Length; i++)
                         {
-                            indexofkeyword = i;
-                            var_name = split_sentence[i + 1];
+                            if (split_sentence[i] == var_type)
+                            {
+                                indexofkeyword = i;
+                                var_name = split_sentence[i + 1];
+                            }
+                            if (split_sentence[i] == "=")
+                            {
+                                var_value = split_sentence[i + 1];
+                            }
                         }
-                        if (split_sentence[i] == "=")
-                        {
-                            var_value = split_sentence[i + 1];
-                        }
+                        comment = " //The integer array (a whole numbers array) " + var_name + " is declared." + '\n';
+                        return comment;
                     }
-                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
-                    return comment;
+                    else
+                    {
+                        for (int i = 0; i < split_sentence.Length; i++)
+                        {
+                            if (split_sentence[i] == var_type)
+                            {
+                                indexofkeyword = i;
+                                var_name = split_sentence[i + 1];
+                            }
+                            if (split_sentence[i] == "=")
+                            {
+                                var_value = split_sentence[i + 1];
+                            }
+                        }
+                        comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                        return comment;
+                    }
                 }
                 //down from here is probably not working and requires testing
                 else if (var_type == "double")
@@ -102,7 +123,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + '\n';
                     return comment;
                 }
                 else if (var_type == "float")
@@ -119,7 +140,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + '\n';
                     return comment;
                 }
                 else if (var_type == "string")
@@ -136,7 +157,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + '\n';
                     return comment;
                 }
                 else if (var_type == "char")
@@ -153,12 +174,12 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + '\n';
+                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + '\n';
                     return comment;
                 }
                 else if (var_type == "using")
                 {
-                    comment = "//Here we are declaring a namespace" + '\n';
+                    comment = " //Here we are declaring a namespace" + '\n';
                     return comment;
                 }
             }
