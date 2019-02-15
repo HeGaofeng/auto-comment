@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace auto_comment
 {
@@ -114,7 +115,7 @@ namespace auto_comment
             }
             else if (picked_option == 2) //Create a copy of the selected file.
             {
-                string path = @""
+                string path = @"";
             }
             else if (picked_option == 3) //Copy the commented version to clipboard.
             {
