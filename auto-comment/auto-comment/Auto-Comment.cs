@@ -46,7 +46,7 @@ namespace auto_comment
 
             Saved_Option.Name = "btn_Save_Preferences";
             Saved_Option.Text = "Save";
-            Saved_Option.SetBounds(401, 316, 75, 23);
+            Saved_Option.SetBounds(381, 316, 105, 23);
             Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
             Controls.Add(Saved_Option);
 
