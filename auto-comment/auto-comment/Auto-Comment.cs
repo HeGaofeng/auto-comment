@@ -107,15 +107,15 @@ namespace auto_comment
                 string Warning_Message = "Please choose an option from the \"Options\" Menu in the bottom right corner.";
                 MessageBox.Show(Warning_Message);
             }
-            else if (picked_option == 1)
+            else if (picked_option == 1) //overwrite slected file
             {
                 //to do
             }
-            else if (picked_option == 2)
+            else if (picked_option == 2) //Create a copy of the selected file at selected location.
             {
                 //to do
             }
-            else if (picked_option == 3)
+            else if (picked_option == 3) //Copy the commented version to clipboard.
             {
                 Clipboard.SetText(text);
             }
