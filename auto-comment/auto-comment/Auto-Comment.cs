@@ -106,8 +106,8 @@ namespace auto_comment
             text = String_Creator.GetCommentedVersion(text);
             if (picked_option == 0)
             {
-                string Warning_Message = "Please choose an option from the \"Options\" Menu in the bottom right corner.";
-                MessageBox.Show(Warning_Message);
+                string Warning_Message1 = "Please choose an option from the \"Options\" Menu in the bottom right corner.";
+                MessageBox.Show(Warning_Message1);
             }
             else if (picked_option == 1) //Overwrite selected file.
             {
@@ -115,6 +115,8 @@ namespace auto_comment
                 {
                     writer.WriteLine(text);
                 }
+                string Warning_Message2 = "Done.";
+                MessageBox.Show(Warning_Message2);
             }
             else if (picked_option == 2) //Create a copy of the selected file.
             {
@@ -127,6 +129,8 @@ namespace auto_comment
                     tw.Close();
                     tw.Dispose();
                 }
+                string Warning_Message3 = "Done.";
+                MessageBox.Show(Warning_Message3);
             }
             else if (picked_option == 3) //Copy the commented version to clipboard.
             {
@@ -134,6 +138,8 @@ namespace auto_comment
             }
             //MessageBox.Show(text);
             text = string.Empty;
+            string Warning_Message = "Done.";
+            MessageBox.Show(Warning_Message);
         }
 
         private void btn_options_Click(object sender, EventArgs e)
