@@ -61,7 +61,6 @@ namespace auto_comment
         //
         private static string Comment(string var_type)
         {
-            int indexofkeyword = 0;
             string var_name = "";
             string var_value = "";
             string comment = "";
@@ -81,7 +80,6 @@ namespace auto_comment
                         {
                             if (split_sentence[i] == var_type)
                             {
-                                indexofkeyword = i;
                                 var_name = split_sentence[i + 1];
                             }
                             if (split_sentence[i] == "=")
@@ -98,7 +96,6 @@ namespace auto_comment
                         {
                             if (split_sentence[i] == var_type)
                             {
-                                indexofkeyword = i;
                                 var_name = split_sentence[i + 1];
                             }
                             if (split_sentence[i] == "=")
@@ -117,7 +114,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -134,7 +130,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -151,7 +146,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -168,7 +162,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
