@@ -9,8 +9,7 @@ namespace auto_comment
 {
     class TextEdit
     {
-        public static string[] Split(string wholetext) //problema moje i da e ot tozi function. vuzmojno e da splitva
-                                                       //no tui kato sled ";" nqmame druga duma ostavq new line charactera tam i ne go maha???!!? nz 
+        public static string[] Split(string wholetext)
         {
             string[] splittext = wholetext.Split('\n'); //vrushta array ot stringove kato vseki ot tozi string suvpada s redovete
             return splittext; //just to push smth
