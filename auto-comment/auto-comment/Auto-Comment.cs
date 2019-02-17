@@ -59,14 +59,14 @@ namespace auto_comment
             //Everything above is used for the options menu
         }
 
-        private void btn_twitter_Click(object sender, EventArgs e)
+        private void btn_twitter_Click(object sender, EventArgs e)//boji pederas smotan kak moja da sburkash funkcia ot 3 reda i da breaknesh cqlata programa wtf ebi se
         {
             ProcessStartInfo sInfo = new ProcessStartInfo("https://twitter.com/FLasersights"); //slagame linka koito iskame da otvorim tuk
             Process.Start(sInfo); //otvara goreposochenia link s default browsera (tozi koito potrebitelq e izbral kato default za negovia comp)
             //ivailo ti shiban idiot, ti si napravil tazi funcia i ako a pipnesh otnovo i ta se schupi shete ubia, big gay faggot
         }
 
-        private void btn_open_Click(object sender, EventArgs e)
+        private void btn_open_Click(object sender, EventArgs e) 
         {
             //ot tuk nadolu vsichko e copy pasta taka che nz kolko e dobro
             this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
@@ -101,7 +101,7 @@ namespace auto_comment
             DialogResult file_selected = MessageBox.Show("File Selected");
         }
 
-        private void btn_comment_Click(object sender, EventArgs e) //boji pederas smotan kak moja da sburkash funkcia ot 5 reda i da breaknesh cqlata programa wtf ebi se
+        private void btn_comment_Click(object sender, EventArgs e) 
         {
             text = String_Creator.GetCommentedVersion(text);
             if (picked_option == 0)
