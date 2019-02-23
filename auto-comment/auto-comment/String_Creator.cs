@@ -44,7 +44,7 @@ namespace auto_comment
                 //ili dobavqm komentara kum curr copy na curr_copy.Lenght - 1
                 if (return_string[i] != null)
                 {
-                    result += curr_copy[i] + return_string[i];
+                    result += TextEdit.Connect(curr_copy[i], return_string[i]);
                 }
                 else
                 {

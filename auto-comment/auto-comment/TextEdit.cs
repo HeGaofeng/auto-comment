@@ -32,5 +32,15 @@ namespace auto_comment
             wholetext = splittext.ToString();
             return wholetext;
         }
+
+        public static string Connect(string text, string comment)
+        {
+            List<string> splittext = new List<string>();
+            text = text.Remove(text.Length - 1);
+            splittext.Add(text);
+            splittext.Add(comment);
+            string final = string.Join(string.Empty , splittext);
+            return final;
+        }
     }
 }
