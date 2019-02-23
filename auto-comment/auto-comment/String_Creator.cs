@@ -15,12 +15,18 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
+        static string[] check_these = { "int", "double", "float", "string", "char", "using", "for"}; //keywords to check for
         static string commeneted_variable_string_global = string.Empty;
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
+        static string checked_value;
+        static string gore_dolu1;
 
+        public static void BaisicMath()
+        {
+
+        }
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
@@ -175,6 +181,34 @@ namespace auto_comment
                 else if (var_type == "using")
                 {
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "for")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == "(") //checkva za otvarane na scobite na for
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "<" || split_sentence[i] == ">") //checkva kav check she ima
+                        {
+                            checked_value = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
+                        {
+                            gore_dolu1 = var_name + "plus 1 (one)";
+                        }
+                        if (split_sentence[i] == "--")
+                        {
+                            gore_dolu1 = var_name + "minus 1 (one)";
+                        }
+                    }
+                    comment = " //A for loop with inner variable " + var_name + "  equal to" + var_value + " then it is checked against " + checked_value + ", " + gore_dolu1 + Environment.NewLine;
                     return comment;
                 }
             }
