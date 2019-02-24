@@ -40,8 +40,6 @@ namespace auto_comment
             }
             for (int i = 0; i < curr_copy.Length; i++)
             {
-                //maham poslednia znak ot arraya i posle dobavqm kommentara
-                //ili dobavqm komentara kum curr copy na curr_copy.Lenght - 1
                 if (return_string[i] != null)
                 {
                     result += TextEdit.Connect(curr_copy[i], return_string[i]);
