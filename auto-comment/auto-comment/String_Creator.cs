@@ -15,11 +15,14 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "int", "double", "float", "string", "char", "using" }; //keywords to check for
+        static string[] check_these = { "int", "double", "float", "string", "char", "using", "for", "{", "}"}; //keywords to check for
         static string commeneted_variable_string_global = string.Empty;
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
+        static string checked_value;
+        static string gore_dolu1;
+        static int funk; //chekva v kvo sme, 0 e klas
 
         public static string GetCommentedVersion(string curr)
         {
@@ -175,11 +178,55 @@ namespace auto_comment
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
+                else if (var_type == "for")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == "(") //checkva za otvarane na scobite na for
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "<" || split_sentence[i] == ">") //checkva kav check she ima
+                        {
+                            checked_value = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
+                        {
+                            gore_dolu1 = var_name + "plus 1 (one)";
+                        }
+                        if (split_sentence[i] == "--")
+                        {
+                            gore_dolu1 = var_name + "minus 1 (one)";
+                        }
+                    }
+                    comment = " //A for loop with inner variable " + var_name + "  equal to" + var_value + " then it is checked against " + checked_value + ", " + gore_dolu1 + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "{")//opravi koda tva e maiche dobar base
+                {
+                    if(funk == 0)
+                    {
+                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                        funk++;
+                        return comment;
+                    }
+                    else if(funk == 1)
+                    {
+                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                        funk++;
+                        return comment;
+                    }
+
+                }
             }
 
             return null; //no matter what it should never return null but I put it here just in case
         }
-
+        //muda?
         private static string CommenetedLineWriter(string commented_line_input)
         {
             DialogResult test = MessageBox.Show(commeneted_variable_string_global);
