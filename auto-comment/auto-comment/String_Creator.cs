@@ -15,8 +15,7 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "int", "double", "float", "string", "char", "using", "for", "{", "}"}; //keywords to check for
-        static string commeneted_variable_string_global = string.Empty;
+        static string[] check_these = { "{", "}", "for", "double", "float", "string", "char", "using", "int"}; //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -72,7 +71,7 @@ namespace auto_comment
             }
             else
             {
-                if (var_type == "int")
+                if (var_type == "int" && var_type != "for")
                 {
                     if (split_sentence.Contains("["))
                     {
@@ -206,6 +205,8 @@ namespace auto_comment
                     comment = " //A for loop with inner variable " + var_name + "  equal to" + var_value + " then it is checked against " + checked_value + ", " + gore_dolu1 + Environment.NewLine;
                     return comment;
                 }
+
+                /*
                 else if (var_type == "{")//opravi koda tva e maiche dobar base
                 {
                     if(funk == 0)
@@ -220,17 +221,11 @@ namespace auto_comment
                         funk++;
                         return comment;
                     }
-
                 }
+                */
             }
 
             return null; //no matter what it should never return null but I put it here just in case
-        }
-        //muda?
-        private static string CommenetedLineWriter(string commented_line_input)
-        {
-            DialogResult test = MessageBox.Show(commeneted_variable_string_global);
-            return commented_line_input;
         }
     }
 }

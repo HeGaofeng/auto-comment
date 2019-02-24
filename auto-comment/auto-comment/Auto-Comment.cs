@@ -138,8 +138,6 @@ namespace auto_comment
             }
             //MessageBox.Show(text);
             text = string.Empty;
-            string Warning_Message = "Done.";
-            MessageBox.Show(Warning_Message);
         }
 
         private void btn_options_Click(object sender, EventArgs e)
