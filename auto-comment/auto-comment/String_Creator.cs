@@ -15,13 +15,14 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "{", "}", "for", "double", "float", "string", "char", "using", "int"}; //keywords to check for
+        static string[] check_these = { "{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int"}; //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
         static string checked_value;
         static string gore_dolu1;
-        static int funk; //chekva v kvo sme, 0 e klas
+        static string inner_variable_name;
+        static int funk = 0; //chekva v kvo sme, 0 e namespace
 
         public static string GetCommentedVersion(string curr)
         {
@@ -107,7 +108,44 @@ namespace auto_comment
                         return comment;
                     }
                 }
-                //down from here is probably not working and requires testing
+                else if (var_type == "{")
+                {
+                    if(funk == 0)
+                    {
+                        comment = " //entering namespace" + Environment.NewLine;
+                        funk++;
+                    }
+                    else if(funk == 1)
+                    {
+                        comment = " //entering class" + Environment.NewLine;
+                        funk++;
+                    }
+                    else if(funk >= 2)
+                    {
+                        comment = " //entering function" + Environment.NewLine;
+                        funk++;
+                    }
+                    return comment;
+                }
+                else if (var_type == "}") //ade ot namespace }
+                {
+                    if (funk == 0)
+                    {
+                        comment = " //exiting namespace" + Environment.NewLine;
+                        funk--;
+                    }
+                    else if (funk == 1)
+                    {
+                        comment = " //exiting class" + Environment.NewLine;
+                        funk--;
+                    }
+                    else if (funk >= 2)
+                    {
+                        comment = " //exiting function" + Environment.NewLine;
+                        funk--;
+                    }
+                    return comment;
+                }
                 else if (var_type == "double")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -177,32 +215,36 @@ namespace auto_comment
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "for")
+                else if (var_type == "for") //nigga why tf inner_variable_name no work REEEEEEEEEEEEEEEE
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "(") //checkva za otvarane na scobite na for
+                        if (split_sentence[i] == "int") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
                         {
-                            var_name = split_sentence[i + 1];
+                            inner_variable_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
-                        if (split_sentence[i] == "<" || split_sentence[i] == ">") //checkva kav check she ima
+                        if (split_sentence[i] == "<") //checkva kav check she ima
                         {
-                            checked_value = split_sentence[i + 1];
+                            checked_value = split_sentence[i + 1] + " is higher";
+                        }
+                        if(split_sentence[i] == ">")
+                        {
+                            checked_value = split_sentence[i + 1] + " is lower";
                         }
                         if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
                         {
-                            gore_dolu1 = var_name + "plus 1 (one)";
+                            gore_dolu1 = "plus 1 (one) to " + inner_variable_name;
                         }
                         if (split_sentence[i] == "--")
                         {
-                            gore_dolu1 = var_name + "minus 1 (one)";
+                            gore_dolu1 = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable " + var_name + "  equal to" + var_value + " then it is checked against " + checked_value + ", " + gore_dolu1 + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu1 + Environment.NewLine;
                     return comment;
                 }
 
