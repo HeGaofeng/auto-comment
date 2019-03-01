@@ -22,7 +22,10 @@ namespace auto_comment
         static string checked_value;
         static string gore_dolu1;
         static string inner_variable_name;
-        static int funk = 0; //chekva v kvo sme, 0 e namespace
+        //static int funk = 0; //chekva v kvo sme, 0 e namespace
+        static bool inNamespace = false;
+        static bool inClass = false;
+        static bool inFunction = false;
 
         public static string GetCommentedVersion(string curr)
         {
@@ -110,39 +113,48 @@ namespace auto_comment
                 }
                 else if (var_type == "{")
                 {
-                    if(funk == 0)
+                    if(inNamespace == false && inClass == false && inFunction == false)
                     {
                         comment = " //entering namespace" + Environment.NewLine;
-                        funk++;
+                        inNamespace = true;
                     }
-                    else if(funk == 1)
+                    else if(inNamespace == true && inClass == false && inFunction == false)
                     {
                         comment = " //entering class" + Environment.NewLine;
-                        funk++;
+                        inNamespace = true;
+                        inClass = true;
                     }
-                    else if(funk >= 2)
+                    else if(inNamespace == true && inClass == true && inFunction == false)
                     {
                         comment = " //entering function" + Environment.NewLine;
-                        funk++;
+                        inNamespace = true;
+                        inClass = true;
+                        inFunction = true;
                     }
                     return comment;
                 }
                 else if (var_type == "}") //ade ot namespace }
                 {
-                    if (funk == 0)
+                    if (inNamespace == true && inClass == false && inFunction == false)
                     {
-                        comment = " //exiting namespace" + Environment.NewLine;
-                        funk--;
+                        comment = " //exiting namespace";
+                        inNamespace = false;
+                        inClass = false;
+                        inFunction = false;
                     }
-                    else if (funk == 1)
+                    else if (inNamespace == true && inClass == true && inFunction == false)
                     {
                         comment = " //exiting class" + Environment.NewLine;
-                        funk--;
+                        inClass = false;
+                        inNamespace = true;
+                        inFunction = false;
                     }
-                    else if (funk >= 2)
+                    else if (inNamespace == true && inClass == true && inFunction == true)
                     {
                         comment = " //exiting function" + Environment.NewLine;
-                        funk--;
+                        inFunction = false;
+                        inNamespace = true;
+                        inClass = true;
                     }
                     return comment;
                 }
