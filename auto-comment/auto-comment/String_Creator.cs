@@ -15,7 +15,7 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int"}; //keywords to check for
+        static string[] check_these = {"{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int"}; //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -39,6 +39,12 @@ namespace auto_comment
                     {
                         keyword_found = check_these[j]; //namerenia keyword (s dumi a ne indeksa mu)
                         split_sentence = TextEdit.SplitLine(curr_copy[i]); //razdela tokushtia red na array ot dumi
+                        return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
+                        break;
+                    }
+                    else
+                    {
+                        keyword_found = "none found"; //namerenia keyword (s dumi a ne indeksa mu)
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
@@ -68,10 +74,17 @@ namespace auto_comment
             string var_name = "";
             string var_value = "";
             string comment = "";
-
-            if (split_sentence.Contains("//"))
+            if (split_sentence.Contains("//") || var_type == "none found")
             {
-                return "";
+                if (var_type == "none found")
+                {
+                    comment = "" + Environment.NewLine;
+                    return comment;
+                }
+                else
+                {
+                    return "";
+                }
             }
             else
             {
@@ -110,6 +123,11 @@ namespace auto_comment
                         comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                         return comment;
                     }
+                }
+                else if (var_type == "()")
+                {
+
+                    return comment;
                 }
                 else if (var_type == "{")
                 {
