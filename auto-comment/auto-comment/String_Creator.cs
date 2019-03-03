@@ -137,7 +137,7 @@ namespace auto_comment
                 {
                     if (inNamespace == true && inClass == false && inFunction == false)
                     {
-                        comment = " //exiting namespace";
+                        comment = "} //exiting namespace" + Environment.NewLine;
                         inNamespace = false;
                         inClass = false;
                         inFunction = false;
