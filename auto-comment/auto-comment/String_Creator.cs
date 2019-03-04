@@ -112,11 +112,6 @@ namespace auto_comment
                         return comment;
                     }
                 }
-                else if (var_type == "(" && var_type == ")")
-                {
-                    comment = " //function";
-                    return comment;
-                }
                 else if (var_type == "{")
                 {
                     if(inNamespace == false && inClass == false && inFunction == false)
@@ -143,7 +138,7 @@ namespace auto_comment
                 {
                     if (inNamespace == true && inClass == false && inFunction == false)
                     {
-                        comment = "} //exiting namespace" + Environment.NewLine;
+                        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
                         inNamespace = false;
                         inClass = false;
                         inFunction = false;
