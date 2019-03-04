@@ -42,12 +42,6 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else
-                    {
-                        keyword_found = "none found"; //namerenia keyword (s dumi a ne indeksa mu)
-                        return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
-                        break;
-                    }
                 }
             }
             for (int i = 0; i < curr_copy.Length; i++)
@@ -74,14 +68,8 @@ namespace auto_comment
             string var_name = "";
             string var_value = "";
             string comment = "";
-            if (split_sentence.Contains("//") || var_type == "none found")
+            if (split_sentence.Contains("//"))
             {
-                if (var_type == "none found")
-                {
-                    comment = "" + Environment.NewLine;
-                    return comment;
-                }
-                else
                 {
                     return "";
                 }
