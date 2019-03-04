@@ -15,7 +15,8 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = {"{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int"}; //keywords to check for
+        static string[] check_these = {"void", "{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int", "bool"}; //keywords to check for
+        //izobshto trebva li void?,
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -112,20 +113,33 @@ namespace auto_comment
                         return comment;
                     }
                 }
+                else if (var_type == "void")//void functions
+                {
+                    int pos = Array.IndexOf(split_sentence, "(");
+                    int cheker = pos++;
+                    int pos2 = Array.IndexOf(split_sentence, ")");
+                    string funk_name = split_sentence[2].Trim('(', ')');
+                    string vis = split_sentence[0];
+                    if (cheker == pos2)
+                    {
+                        comment = " //The function named " + funk_name + " returns NOTHING and has " + vis + " visability" + Environment.NewLine;
+                        return comment; //REEEEEEEEE SAME SHIT KAT S FOR, raboti koda ama variabali v comment ne gi dava
+                    }
+                }
                 else if (var_type == "{")
                 {
-                    if(inNamespace == false && inClass == false && inFunction == false)
+                    if (inNamespace == false && inClass == false && inFunction == false)
                     {
                         comment = " //entering namespace" + Environment.NewLine;
                         inNamespace = true;
                     }
-                    else if(inNamespace == true && inClass == false && inFunction == false)
+                    else if (inNamespace == true && inClass == false && inFunction == false)
                     {
                         comment = " //entering class" + Environment.NewLine;
                         inNamespace = true;
                         inClass = true;
                     }
-                    else if(inNamespace == true && inClass == true && inFunction == false)
+                    else if (inNamespace == true && inClass == true && inFunction == false)
                     {
                         comment = " //entering function" + Environment.NewLine;
                         inNamespace = true;
@@ -173,6 +187,22 @@ namespace auto_comment
                         }
                     }
                     comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "bool")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = " //The bool (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float")
@@ -244,7 +274,7 @@ namespace auto_comment
                         {
                             checked_value = split_sentence[i + 1] + " is higher";
                         }
-                        if(split_sentence[i] == ">")
+                        if (split_sentence[i] == ">")
                         {
                             checked_value = split_sentence[i + 1] + " is lower";
                         }
