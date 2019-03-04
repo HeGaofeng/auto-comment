@@ -124,9 +124,9 @@ namespace auto_comment
                         return comment;
                     }
                 }
-                else if (var_type == "()")
+                else if (var_type == "(" && var_type == ")")
                 {
-
+                    comment = " //function";
                     return comment;
                 }
                 else if (var_type == "{")
