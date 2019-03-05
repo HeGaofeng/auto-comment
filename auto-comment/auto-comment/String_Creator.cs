@@ -26,6 +26,7 @@ namespace auto_comment
         static bool inNamespace = false;
         static bool inClass = false;
         static bool inFunction = false;
+        static bool ohfuckohshit = false;
 
         public static string GetCommentedVersion(string curr)
         {
@@ -42,6 +43,11 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
+                    //else
+                    //{
+                        //ohfuckohshit = true;
+                        //break;
+                    //}
                 }
             }
             for (int i = 0; i < curr_copy.Length; i++)
@@ -289,6 +295,12 @@ namespace auto_comment
                     comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu1 + Environment.NewLine;
                     return comment;
                 }
+                //else if (ohfuckohshit == true)//handaler?
+                //{
+                    //comment = " //sumimasen, nani the heck" + Environment.NewLine;
+                    //return comment;
+                //}
+                //chupi vsichko REEEEEEEEEEEEEE
 
                 /*
                 else if (var_type == "{")//opravi koda tva e maiche dobar base
