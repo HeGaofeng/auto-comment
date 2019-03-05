@@ -23,7 +23,6 @@ namespace auto_comment
         static string checked_value;
         static string gore_dolu1;
         static string inner_variable_name;
-        //static int funk = 0; //chekva v kvo sme, 0 e namespace
         static bool inNamespace = false;
         static bool inClass = false;
         static bool inFunction = false;
