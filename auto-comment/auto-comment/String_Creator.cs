@@ -15,7 +15,7 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = {"void", "{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int", "bool"}; //keywords to check for
+        static string[] check_these = {"public", "private", "void", "for", "(", ")", "double", "float", "string", "char", "using", "int", "bool"}; //keywords to check for
         //izobshto trebva li void?,
         static string keyword_found = string.Empty;
         static string[] split_sentence;
@@ -23,10 +23,10 @@ namespace auto_comment
         static string checked_value;
         static string gore_dolu1;
         static string inner_variable_name;
-        static bool inNamespace = false;
-        static bool inClass = false;
-        static bool inFunction = false;
-        static bool ohfuckohshit = false;
+        //static bool inNamespace = false;
+        //static bool inClass = false;
+        //static bool inFunction = false;
+        //static bool ohfuckohshit = false;
 
         public static string GetCommentedVersion(string curr)
         {
@@ -120,64 +120,71 @@ namespace auto_comment
                 }
                 else if (var_type == "void")//void functions
                 {
-                    int pos = Array.IndexOf(split_sentence, "(");
-                    int cheker = pos++;
-                    int pos2 = Array.IndexOf(split_sentence, ")");
-                    string funk_name = split_sentence[2].Trim('(', ')');
-                    string vis = split_sentence[0];
-                    if (cheker == pos2)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        comment = " //The function named " + funk_name + " returns NOTHING and has " + vis + " visability" + Environment.NewLine;
-                        return comment; //REEEEEEEEE SAME SHIT KAT S FOR, raboti koda ama variabali v comment ne gi dava
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1].Trim('(', ')');
+                        }
+                        if (split_sentence[i] == "public")
+                        {
+                            var_value = "public";
+                        }
+                        if(split_sentence[i] == "private")
+                        {
+                            var_value = "private";
+                        }
                     }
-                }
-                else if (var_type == "{")
-                {
-                    if (inNamespace == false && inClass == false && inFunction == false)
-                    {
-                        comment = " //entering namespace" + Environment.NewLine;
-                        inNamespace = true;
-                    }
-                    else if (inNamespace == true && inClass == false && inFunction == false)
-                    {
-                        comment = " //entering class" + Environment.NewLine;
-                        inNamespace = true;
-                        inClass = true;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == false)
-                    {
-                        comment = " //entering function" + Environment.NewLine;
-                        inNamespace = true;
-                        inClass = true;
-                        inFunction = true;
-                    }
+                    comment = " //The function " + var_name + " is declared and it returns NOTHING and has " + var_value + " visablitiy"+ Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "}") //ade ot namespace }
-                {
-                    if (inNamespace == true && inClass == false && inFunction == false)
-                    {
-                        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
-                        inNamespace = false;
-                        inClass = false;
-                        inFunction = false;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == false)
-                    {
-                        comment = " //exiting class" + Environment.NewLine;
-                        inClass = false;
-                        inNamespace = true;
-                        inFunction = false;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == true)
-                    {
-                        comment = " //exiting function" + Environment.NewLine;
-                        inFunction = false;
-                        inNamespace = true;
-                        inClass = true;
-                    }
-                    return comment;
-                }
+                //else if (var_type == "{")
+                //{
+                //    if (inNamespace == false && inClass == false && inFunction == false)
+                //    {
+                //        comment = " //entering namespace" + Environment.NewLine;
+                //        inNamespace = true;
+                //    }
+                //    else if (inNamespace == true && inClass == false && inFunction == false)
+                //    {
+                //        comment = " //entering class" + Environment.NewLine;
+                //        inNamespace = true;
+                //        inClass = true;
+                //    }
+                //    else if (inNamespace == true && inClass == true && inFunction == false)
+                //    {
+                //        comment = " //entering function" + Environment.NewLine;
+                //        inNamespace = true;
+                //        inClass = true;
+                //        inFunction = true;
+                //    }
+                //    return comment;
+                //}
+                //else if (var_type == "}") //ade ot namespace }
+                //{
+                //    if (inNamespace == true && inClass == false && inFunction == false)
+                //    {
+                //        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
+                //        inNamespace = false;
+                //        inClass = false;
+                //        inFunction = false;
+                //    }
+                //    else if (inNamespace == true && inClass == true && inFunction == false)
+                //    {
+                //        comment = " //exiting class" + Environment.NewLine;
+                //        inClass = false;
+                //        inNamespace = true;
+                //        inFunction = false;
+                //    }
+                //    else if (inNamespace == true && inClass == true && inFunction == true)
+                //    {
+                //        comment = " //exiting function" + Environment.NewLine;
+                //        inFunction = false;
+                //        inNamespace = true;
+                //        inClass = true;
+                //    }
+                //    return comment;
+                //}
                 else if (var_type == "double")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -267,32 +274,36 @@ namespace auto_comment
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "int") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
+                        if (split_sentence[i] == "for(int") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
                         {
                             inner_variable_name = split_sentence[i + 1];
                         }
-                        if (split_sentence[i] == "=")
+                        if (split_sentence[i] == "int")
                         {
-                            var_value = split_sentence[i + 1];
+                            inner_variable_name = split_sentence[i + 2];
+                        }
+                        if(split_sentence[i] == "=")
+                        {
+                            checked_value = split_sentence[i - 1] + " and " + split_sentence[i - 1].Trim(';') + " are equal";
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
                         {
-                            checked_value = split_sentence[i + 1] + " is higher";
+                            checked_value = split_sentence[i + 1].Trim(';') + " is higher";
                         }
                         if (split_sentence[i] == ">")
                         {
-                            checked_value = split_sentence[i + 1] + " is lower";
+                            checked_value = split_sentence[i + 1].Trim(';') + " is lower";
                         }
-                        if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
+                        if (split_sentence[i] == inner_variable_name + "++)") //checkva dali she adne ili she mahne edno
                         {
                             gore_dolu1 = "plus 1 (one) to " + inner_variable_name;
                         }
-                        if (split_sentence[i] == "--")
+                        if (split_sentence[i] == inner_variable_name + "--)")
                         {
                             gore_dolu1 = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu1 + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + " is equal to " + checked_value + ", then " + gore_dolu1 + Environment.NewLine;
                     return comment;
                 }
                 //else if (ohfuckohshit == true)//handaler?
