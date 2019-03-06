@@ -15,18 +15,14 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = {"void", "{", "}", "for", "(", ")", "double", "float", "string", "char", "using", "int", "bool"}; //keywords to check for
-        //izobshto trebva li void?,
+        static string[] check_these = { "using", "void", "{", "}", "for", "(", ")", "double", "float", "string", "char", "int", "bool" }; //keywords to check for
+        //izobshto trebva li void?
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
         static string checked_value;
-        static string gore_dolu1;
+        static string gore_dolu;
         static string inner_variable_name;
-        static bool inNamespace = false;
-        static bool inClass = false;
-        static bool inFunction = false;
-        static bool ohfuckohshit = false;
 
         public static string GetCommentedVersion(string curr)
         {
@@ -43,11 +39,10 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    //else
-                    //{
-                        //ohfuckohshit = true;
-                        //break;
-                    //}
+                    else
+                    {
+                        return_string[i] = Comment("default"); //tuk ni e komentara koito shte dobavim v kraq na reda
+                    }
                 }
             }
             for (int i = 0; i < curr_copy.Length; i++)
@@ -76,9 +71,7 @@ namespace auto_comment
             string comment = "";
             if (split_sentence.Contains("//"))
             {
-                {
-                    return "";
-                }
+                return "";
             }
             else
             {
@@ -118,64 +111,16 @@ namespace auto_comment
                         return comment;
                     }
                 }
-                else if (var_type == "void")//void functions
+                else if (var_type == "void") //void functions
                 {
-                    int pos = Array.IndexOf(split_sentence, "(");
-                    int cheker = pos++;
-                    int pos2 = Array.IndexOf(split_sentence, ")");
-                    string funk_name = split_sentence[2].Trim('(', ')');
-                    string vis = split_sentence[0];
-                    if (cheker == pos2)
+                    for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        comment = " //The function named " + funk_name + " returns NOTHING and has " + vis + " visability" + Environment.NewLine;
-                        return comment; //REEEEEEEEE SAME SHIT KAT S FOR, raboti koda ama variabali v comment ne gi dava
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
                     }
-                }
-                else if (var_type == "{")
-                {
-                    if (inNamespace == false && inClass == false && inFunction == false)
-                    {
-                        comment = " //entering namespace" + Environment.NewLine;
-                        inNamespace = true;
-                    }
-                    else if (inNamespace == true && inClass == false && inFunction == false)
-                    {
-                        comment = " //entering class" + Environment.NewLine;
-                        inNamespace = true;
-                        inClass = true;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == false)
-                    {
-                        comment = " //entering function" + Environment.NewLine;
-                        inNamespace = true;
-                        inClass = true;
-                        inFunction = true;
-                    }
-                    return comment;
-                }
-                else if (var_type == "}") //ade ot namespace }
-                {
-                    if (inNamespace == true && inClass == false && inFunction == false)
-                    {
-                        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
-                        inNamespace = false;
-                        inClass = false;
-                        inFunction = false;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == false)
-                    {
-                        comment = " //exiting class" + Environment.NewLine;
-                        inClass = false;
-                        inNamespace = true;
-                        inFunction = false;
-                    }
-                    else if (inNamespace == true && inClass == true && inFunction == true)
-                    {
-                        comment = " //exiting function" + Environment.NewLine;
-                        inFunction = false;
-                        inNamespace = true;
-                        inClass = true;
-                    }
+                    comment = " //Void function with the name " + var_name + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "double")
@@ -285,42 +230,17 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
                         {
-                            gore_dolu1 = "plus 1 (one) to " + inner_variable_name;
+                            gore_dolu = "plus 1 (one) to " + inner_variable_name;
                         }
                         if (split_sentence[i] == "--")
                         {
-                            gore_dolu1 = "minus 1 (one) to " + inner_variable_name;
+                            gore_dolu = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu1 + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu + Environment.NewLine;
                     return comment;
                 }
-                //else if (ohfuckohshit == true)//handaler?
-                //{
-                    //comment = " //sumimasen, nani the heck" + Environment.NewLine;
-                    //return comment;
-                //}
-                //chupi vsichko REEEEEEEEEEEEEE
-
-                /*
-                else if (var_type == "{")//opravi koda tva e maiche dobar base
-                {
-                    if(funk == 0)
-                    {
-                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
-                        funk++;
-                        return comment;
-                    }
-                    else if(funk == 1)
-                    {
-                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
-                        funk++;
-                        return comment;
-                    }
-                }
-                */
             }
-
             return null; //no matter what it should never return null but I put it here just in case
         }
     }
