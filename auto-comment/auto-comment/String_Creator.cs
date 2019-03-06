@@ -287,7 +287,7 @@ namespace auto_comment
                             gore_dolu = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + " is equal to " + checked_value + ", then " + gore_dolu + Environment.NewLine;
                     return comment;
                 }
             }
