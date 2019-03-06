@@ -15,19 +15,14 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = {"public", "private", "void", "for", "(", ")", "double", "float", "string", "char", "using", "int", "bool"}; //keywords to check for
-        //izobshto trebva li void?,
+        static string[] check_these = { "using", "void", "{", "}", "for", "(", ")", "double", "float", "string", "char", "int", "bool" }; //keywords to check for
+        //izobshto trebva li void?
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
         static string checked_value;
-        static string gore_dolu1;
+        static string gore_dolu;
         static string inner_variable_name;
-        //static bool inNamespace = false;
-        //static bool inClass = false;
-        //static bool inFunction = false;
-        //static bool ohfuckohshit = false;
-
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
@@ -43,18 +38,17 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    //else
-                    //{
-                        //ohfuckohshit = true;
-                        //break;
-                    //}
+                    else
+                    {
+                        return_string[i] = Comment("default"); //tuk ni e komentara koito shte dobavim v kraq na reda
+                    }
                 }
             }
             for (int i = 0; i < curr_copy.Length; i++)
             {
                 if (return_string[i] != null)
                 {
-                    result += TextEdit.Connect(curr_copy[i], return_string[i]);
+                    result += curr_copy[i] + return_string[i];
                 }
                 else
                 {
@@ -76,9 +70,7 @@ namespace auto_comment
             string comment = "";
             if (split_sentence.Contains("//"))
             {
-                {
-                    return "";
-                }
+                return "";
             }
             else
             {
@@ -118,24 +110,16 @@ namespace auto_comment
                         return comment;
                     }
                 }
-                else if (var_type == "void")//void functions
+                else if (var_type == "void") //void functions
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            var_name = split_sentence[i + 1].Trim('(', ')');
-                        }
-                        if (split_sentence[i] == "public")
-                        {
-                            var_value = "public";
-                        }
-                        if(split_sentence[i] == "private")
-                        {
-                            var_value = "private";
+                            var_name = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The function " + var_name + " is declared and it returns NOTHING and has " + var_value + " visablitiy"+ Environment.NewLine;
+                    comment = " //Void function with the name " + var_name + Environment.NewLine;
                     return comment;
                 }
                 //else if (var_type == "{")
@@ -296,42 +280,17 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == inner_variable_name + "++)") //checkva dali she adne ili she mahne edno
                         {
-                            gore_dolu1 = "plus 1 (one) to " + inner_variable_name;
+                            gore_dolu = "plus 1 (one) to " + inner_variable_name;
                         }
                         if (split_sentence[i] == inner_variable_name + "--)")
                         {
-                            gore_dolu1 = "minus 1 (one) to " + inner_variable_name;
+                            gore_dolu = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + inner_variable_name + " is equal to " + checked_value + ", then " + gore_dolu1 + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu + Environment.NewLine;
                     return comment;
                 }
-                //else if (ohfuckohshit == true)//handaler?
-                //{
-                    //comment = " //sumimasen, nani the heck" + Environment.NewLine;
-                    //return comment;
-                //}
-                //chupi vsichko REEEEEEEEEEEEEE
-
-                /*
-                else if (var_type == "{")//opravi koda tva e maiche dobar base
-                {
-                    if(funk == 0)
-                    {
-                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
-                        funk++;
-                        return comment;
-                    }
-                    else if(funk == 1)
-                    {
-                        comment = " //The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
-                        funk++;
-                        return comment;
-                    }
-                }
-                */
             }
-
             return null; //no matter what it should never return null but I put it here just in case
         }
     }

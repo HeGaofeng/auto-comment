@@ -12,7 +12,7 @@ namespace auto_comment
         public static string[] Split(string wholetext)
         {
             string[] splittext = wholetext.Split('\n'); //vrushta array ot stringove kato vseki ot tozi string suvpada s redovete
-            return splittext; //just to push smth
+            return splittext;
         }
         public static string SpecificLine(string wholetext, int index)
         {
@@ -39,7 +39,7 @@ namespace auto_comment
             text = text.Remove(text.Length - 1);
             splittext.Add(text);
             splittext.Add(comment);
-            string final = string.Join(string.Empty , splittext);
+            string final = string.Join(string.Empty, splittext);
             return final;
         }
     }
