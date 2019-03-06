@@ -258,7 +258,7 @@ namespace auto_comment
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "for(int") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
+                        if (split_sentence[i] == "for(int" || split_sentence[i] == "for(double" || split_sentence[i] == "for(float" || split_sentence[i] == "for(char" || split_sentence[i] == "for(string") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
                         {
                             inner_variable_name = split_sentence[i + 1];
                         }
