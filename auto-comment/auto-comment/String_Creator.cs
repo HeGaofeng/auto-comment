@@ -49,7 +49,7 @@ namespace auto_comment
             {
                 if (return_string[i] != null)
                 {
-                    result += TextEdit.Connect(curr_copy[i], return_string[i]);
+                    result += curr_copy[i] + return_string[i];
                 }
                 else
                 {
