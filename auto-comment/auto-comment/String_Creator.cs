@@ -48,7 +48,7 @@ namespace auto_comment
             {
                 if (return_string[i] != null)
                 {
-                    result += curr_copy[i] + return_string[i];
+                    result += TextEdit.Connect(curr_copy[i], return_string[i]);
                 }
                 else
                 {
@@ -254,11 +254,11 @@ namespace auto_comment
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "for") //nigga why tf inner_variable_name no work REEEEEEEEEEEEEEEE
+                else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "for(int" || split_sentence[i] == "for(double" || split_sentence[i] == "for(float" || split_sentence[i] == "for(char" || split_sentence[i] == "for(string") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
+                        if (split_sentence[i] == "for(int" || split_sentence[i] == "for(double" || split_sentence[i] == "for(float" || split_sentence[i] == "for(char" || split_sentence[i] == "for(string")
                         {
                             inner_variable_name = split_sentence[i + 1];
                         }
