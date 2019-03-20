@@ -295,3 +295,23 @@ namespace auto_comment
         }
     }
 }
+/*
+namespace auto_comment
+{
+    public class Options_Items
+    {
+        public void Commentmethod
+		{
+			bitch
+		}
+    }
+ne bachka ^, dava greshka che // nemoge da empty
+
+
+
+using System;
+string read = Console.ReadLine();
+int n = 10;
+for(int i = 0; i < n; i++)
+blyat
+bachka ^
