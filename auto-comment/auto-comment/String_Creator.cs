@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+//get type check daloi funci pochva s _ ili char ne cifra
 
 namespace auto_comment
 {
@@ -23,6 +24,9 @@ namespace auto_comment
         static string checked_value;
         static string gore_dolu;
         static string inner_variable_name;
+        static bool innamespace = false;
+        static bool inclass = false;
+        static bool infunction = false;
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
@@ -122,53 +126,53 @@ namespace auto_comment
                     comment = " //Void function with the name " + var_name + Environment.NewLine;
                     return comment;
                 }
-                //else if (var_type == "{")
-                //{
-                //    if (inNamespace == false && inClass == false && inFunction == false)
-                //    {
-                //        comment = " //entering namespace" + Environment.NewLine;
-                //        inNamespace = true;
-                //    }
-                //    else if (inNamespace == true && inClass == false && inFunction == false)
-                //    {
-                //        comment = " //entering class" + Environment.NewLine;
-                //        inNamespace = true;
-                //        inClass = true;
-                //    }
-                //    else if (inNamespace == true && inClass == true && inFunction == false)
-                //    {
-                //        comment = " //entering function" + Environment.NewLine;
-                //        inNamespace = true;
-                //        inClass = true;
-                //        inFunction = true;
-                //    }
-                //    return comment;
-                //}
-                //else if (var_type == "}") //ade ot namespace }
-                //{
-                //    if (inNamespace == true && inClass == false && inFunction == false)
-                //    {
-                //        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
-                //        inNamespace = false;
-                //        inClass = false;
-                //        inFunction = false;
-                //    }
-                //    else if (inNamespace == true && inClass == true && inFunction == false)
-                //    {
-                //        comment = " //exiting class" + Environment.NewLine;
-                //        inClass = false;
-                //        inNamespace = true;
-                //        inFunction = false;
-                //    }
-                //    else if (inNamespace == true && inClass == true && inFunction == true)
-                //    {
-                //        comment = " //exiting function" + Environment.NewLine;
-                //        inFunction = false;
-                //        inNamespace = true;
-                //        inClass = true;
-                //    }
-                //    return comment;
-                //}
+                else if (var_type == "{")
+                {
+                    if (innamespace == false && inclass == false && infunction == false)
+                    {
+                        comment = " //entering namespace" + Environment.NewLine;
+                        innamespace = true;
+                    }
+                    else if (innamespace == true && inclass == false && infunction == false)
+                    {
+                        comment = " //entering class" + Environment.NewLine;
+                        innamespace = true;
+                        inclass = true;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == false)
+                    {
+                        comment = " //entering function" + Environment.NewLine;
+                        innamespace = true;
+                        inclass = true;
+                        infunction = true;
+                    }
+                    return comment;
+                }
+                else if (var_type == "}") //ade ot namespace }
+                {
+                    if (innamespace == true && inclass == false && infunction == false)
+                    {
+                        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
+                        innamespace = false;
+                        inclass = false;
+                        infunction = false;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == false)
+                    {
+                        comment = " //exiting class" + Environment.NewLine;
+                        inclass = false;
+                        innamespace = true;
+                        infunction = false;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == true)
+                    {
+                        comment = " //exiting function" + Environment.NewLine;
+                        infunction = false;
+                        innamespace = true;
+                        inclass = true;
+                    }
+                    return comment;
+                }
                 else if (var_type == "double")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
