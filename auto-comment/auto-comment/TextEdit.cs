@@ -33,11 +33,11 @@ namespace auto_comment
             return wholetext;
         }
 
-        public static string Connect(string text, string comment)
+        public static string Connect(string code, string comment)
         {
             List<string> splittext = new List<string>();
-            text = text.Remove(text.Length - 1);
-            splittext.Add(text);
+            code = code.Remove(code.Length - 1);
+            splittext.Add(code);
             splittext.Add(comment);
             string final = string.Join(string.Empty, splittext);
             return final;
