@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+//get type check daloi funci pochva s _ ili char ne cifra
 
 namespace auto_comment
 {
@@ -23,7 +24,9 @@ namespace auto_comment
         static string checked_value;
         static string gore_dolu;
         static string inner_variable_name;
-
+        static bool innamespace = false;
+        static bool inclass = false;
+        static bool infunction = false;
         public static string GetCommentedVersion(string curr)
         {
             curr_copy = TextEdit.Split(curr);
@@ -123,6 +126,53 @@ namespace auto_comment
                     comment = " //Void function with the name " + var_name + Environment.NewLine;
                     return comment;
                 }
+                else if (var_type == "{")
+                {
+                    if (innamespace == false && inclass == false && infunction == false)
+                    {
+                        comment = " //entering namespace" + Environment.NewLine;
+                        innamespace = true;
+                    }
+                    else if (innamespace == true && inclass == false && infunction == false)
+                    {
+                        comment = " //entering class" + Environment.NewLine;
+                        innamespace = true;
+                        inclass = true;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == false)
+                    {
+                        comment = " //entering function" + Environment.NewLine;
+                        innamespace = true;
+                        inclass = true;
+                        infunction = true;
+                    }
+                    return comment;
+                }
+                else if (var_type == "}") //ade ot namespace }
+                {
+                    if (innamespace == true && inclass == false && infunction == false)
+                    {
+                        comment = " //exiting namespace" + Environment.NewLine; //mahnah } raboti s nekoi failove s nekoi ne nz ko mu stava
+                        innamespace = false;
+                        inclass = false;
+                        infunction = false;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == false)
+                    {
+                        comment = " //exiting class" + Environment.NewLine;
+                        inclass = false;
+                        innamespace = true;
+                        infunction = false;
+                    }
+                    else if (innamespace == true && inclass == true && infunction == true)
+                    {
+                        comment = " //exiting function" + Environment.NewLine;
+                        infunction = false;
+                        innamespace = true;
+                        inclass = true;
+                    }
+                    return comment;
+                }
                 else if (var_type == "double")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -208,36 +258,40 @@ namespace auto_comment
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "for") //nigga why tf inner_variable_name no work REEEEEEEEEEEEEEEE
+                else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "int") //checkva za otvarane na scobite na for //legit nz sho tva ne bachka yelp
+                        if (split_sentence[i] == "for(int" || split_sentence[i] == "for(double" || split_sentence[i] == "for(float" || split_sentence[i] == "for(char" || split_sentence[i] == "for(string")
                         {
                             inner_variable_name = split_sentence[i + 1];
                         }
-                        if (split_sentence[i] == "=")
+                        if (split_sentence[i] == "int")
                         {
-                            var_value = split_sentence[i + 1];
+                            inner_variable_name = split_sentence[i + 2];
+                        }
+                        if(split_sentence[i] == "=")
+                        {
+                            checked_value = split_sentence[i - 1] + " and " + split_sentence[i - 1].Trim(';') + " are equal";
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
                         {
-                            checked_value = split_sentence[i + 1] + " is higher";
+                            checked_value = split_sentence[i + 1].Trim(';') + " is higher";
                         }
                         if (split_sentence[i] == ">")
                         {
-                            checked_value = split_sentence[i + 1] + " is lower";
+                            checked_value = split_sentence[i + 1].Trim(';') + " is lower";
                         }
-                        if (split_sentence[i] == "++") //checkva dali she adne ili she mahne edno
+                        if (split_sentence[i] == inner_variable_name + "++)") //checkva dali she adne ili she mahne edno
                         {
                             gore_dolu = "plus 1 (one) to " + inner_variable_name;
                         }
-                        if (split_sentence[i] == "--")
+                        if (split_sentence[i] == inner_variable_name + "--)")
                         {
                             gore_dolu = "minus 1 (one) to " + inner_variable_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + inner_variable_name + "is equal to " + var_value + " if " + checked_value + ",then " + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + inner_variable_name + " is equal to " + checked_value + ", then " + gore_dolu + Environment.NewLine;
                     return comment;
                 }
             }
@@ -245,3 +299,24 @@ namespace auto_comment
         }
     }
 }
+/*
+namespace auto_comment
+{
+    public class Options_Items
+    {
+        public void Commentmethod
+		{
+			bitch
+		}
+    }
+ne bachka ^, dava greshka che // nemoge da empty
+
+
+
+using System;
+string read = Console.ReadLine();
+int n = 10;
+for(int i = 0; i < n; i++)
+blyat
+bachka ^
+*/

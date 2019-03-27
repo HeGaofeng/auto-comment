@@ -1,2 +1,9 @@
-# auto-comment
-It auto comments your code
+# Auto-Comment
+
+
+It auto comments your code.
+
+
+Devs:  
+Ivailo Hristov  
+Bojidar Atanason
