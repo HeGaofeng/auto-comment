@@ -16,8 +16,9 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "using", "void", "for", "double", "float", "string", "char", "int", "bool" }; //keywords to check for
-        //izobshto trebva li void?
+        static string[] check_these =
+        { "byte", "bool", "decimal", "using", "double", "float", "string", "char", "int", "var", "continue;", "break;" };
+        //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -37,7 +38,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (!curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")"))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -60,7 +61,6 @@ namespace auto_comment
 
         private static string Comment(string var_type)
         {
-            int indexofkeyword = 0;
             string var_name = "";
             string var_value = "";
             string comment = "";
@@ -80,7 +80,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -98,7 +97,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -106,7 +104,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = "//The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float")
@@ -115,7 +113,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -123,7 +120,38 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The float (a floating point number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = "//The float (precision: 6-9) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "decimal")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = "//The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "break;")
+                {
+                    comment = "// The break statement terminates the closest enclosing loop or switch statement" + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "continue;")
+                {
+                    comment = "// The continue statement passes control to the next iteration of the enclosing loop or switch statement" + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "var")
+                {
+                    comment = "// StOp UsInG vAr GaY FaGgOt" + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string")
@@ -132,7 +160,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -149,7 +176,6 @@ namespace auto_comment
                     {
                         if (split_sentence[i] == var_type)
                         {
-                            indexofkeyword = i;
                             var_name = split_sentence[i + 1];
                         }
                         if (split_sentence[i] == "=")
@@ -158,6 +184,38 @@ namespace auto_comment
                         }
                     }
                     comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "bool")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = "//The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type == "byte")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = "//The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "using")
