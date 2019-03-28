@@ -16,7 +16,7 @@ namespace auto_comment
     class String_Creator
     {
         static string[] curr_copy;
-        static string[] check_these = { "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "char ", "int ", "var ", "continue;", "break;" };
+        static string[] check_these = { "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int ", "var ", "continue;", "break;" };
         //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
@@ -169,6 +169,22 @@ namespace auto_comment
                     comment = "//The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
+                else if (var_type == "string[]")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    comment = " //The string array " + var_name + " is declared and it's elements are " + var_value + Environment.NewLine;
+                    return comment;
+                }
                 else if (var_type == "char ")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -182,7 +198,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "bool ")
