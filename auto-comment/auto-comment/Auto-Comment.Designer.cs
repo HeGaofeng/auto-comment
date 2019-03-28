@@ -1,6 +1,6 @@
 ﻿namespace auto_comment
 {
-    partial class Form1
+    partial class auto_comment
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(auto_comment));
             this.btn_comment = new System.Windows.Forms.Button();
             this.btn_open = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -102,7 +103,7 @@
             this.btn_options.UseVisualStyleBackColor = false;
             this.btn_options.Click += new System.EventHandler(this.btn_options_Click);
             // 
-            // Form1
+            // auto_comment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -117,7 +118,10 @@
             this.Controls.Add(this.btn_comment);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Transparent;
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(600, 396);
+            this.MinimumSize = new System.Drawing.Size(600, 396);
+            this.Name = "auto_comment";
             this.Text = "Auto-Comment";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace auto_comment
 {
-    public partial class Form1 : Form
+    public partial class auto_comment : Form
     {
         string text = string.Empty; //text received from the user
         ComboBox Options_DropDown = new ComboBox(); //pravim novo drop down menu
@@ -21,7 +21,7 @@ namespace auto_comment
         int picked_option = 0;
         string filePath = string.Empty;
 
-        public Form1()
+        public auto_comment()
         {
             InitializeComponent();
 
