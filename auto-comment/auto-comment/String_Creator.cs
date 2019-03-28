@@ -69,7 +69,7 @@ namespace auto_comment
                 if (var_type == "default")
                     return Environment.NewLine;
                 else
-                    return "+" + Environment.NewLine;
+                    return " +" + Environment.NewLine;
             }
             else
             {
@@ -86,7 +86,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 //down from here is probably not working and requires testing
@@ -103,7 +103,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float ")
@@ -119,7 +119,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The float (precision: 6-9) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The float (precision: 6-9) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "decimal ")
@@ -135,22 +135,22 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "break;")
                 {
-                    comment = "// The break statement terminates the closest enclosing loop or switch statement" + Environment.NewLine;
+                    comment = " //The break statement terminates the closest enclosing loop or switch statement" + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "continue;")
                 {
-                    comment = "// The continue statement passes control to the next iteration of the enclosing loop or switch statement" + Environment.NewLine;
+                    comment = " //The continue statement passes control to the next iteration of the enclosing loop or switch statement" + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "var ")
                 {
-                    comment = "// StOp UsInG vAr GaY FaGgOt" + Environment.NewLine;
+                    comment = " //StOp UsInG vAr GaY FaGgOt" + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string ")
@@ -166,7 +166,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "char ")
@@ -182,7 +182,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "bool ")
@@ -198,7 +198,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "byte ")
@@ -214,12 +214,12 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = "//The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "using ")
                 {
-                    comment = "//Here we are declaring a namespace" + Environment.NewLine;
+                    comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
             }
