@@ -17,8 +17,8 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "for", "byte", "bool", "decimal", "using", "double",
-        "float", "string", "string[]", "char", "int", "var",
+        { "for ", "byte ", "bool ", "decimal ", "using ", "double ",
+        "float ", "string ", "string[] ", "char ", "int ", "var ",
         "continue;", "break;" };
         //keywords to check for
         static string keyword_found = string.Empty;
@@ -63,6 +63,7 @@ namespace auto_comment
 
         private static string Comment(string var_type)
         {
+            var_type = var_type.Trim();
             string var_name = "";
             string var_value = "";
             string comment = "";

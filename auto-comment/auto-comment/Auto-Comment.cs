@@ -75,7 +75,7 @@ namespace auto_comment
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "D:\\Desktop";
                 openFileDialog.Filter = "txt files (*.txt)|*.txt| C# Files (*.cs)|*.cs";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
