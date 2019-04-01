@@ -138,13 +138,12 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1280, 720);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "auto_comment";
             this.Text = "Auto-Comment";
             this.ResumeLayout(false);
-            this.MaximizeBox = false;
-            // Set the MinimizeBox to false to remove the minimize box.
 
         }
 

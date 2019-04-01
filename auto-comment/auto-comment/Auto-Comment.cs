@@ -42,13 +42,19 @@ namespace auto_comment
             // make it readonly
             Options_DropDown.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            Options_DropDown.SetBounds(345, 290, 207, 23);
+            Options_DropDown.SetBounds(726, 560, 280, 28);
+            Options_DropDown.DropDownWidth = 430;
+            Options_DropDown.Font = new Font("Agency FB", 24);
 
             Saved_Option.Click += new System.EventHandler(this.btn_Save_Preferences_Click);
 
             Saved_Option.Name = "btn_Save_Preferences";
             Saved_Option.Text = "Save";
-            Saved_Option.SetBounds(345, 316, 75, 23);
+            Saved_Option.TextAlign = ContentAlignment.MiddleLeft;
+            Saved_Option.FlatStyle = FlatStyle.Flat;
+            Saved_Option.FlatAppearance.BorderSize = 0;
+            Saved_Option.SetBounds(726, 600, 124, 48);
+            Saved_Option.Font = new Font("Agency FB", 24);
             Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
             Controls.Add(Saved_Option);
 
