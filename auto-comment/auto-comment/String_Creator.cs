@@ -17,7 +17,9 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "for ", "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int ", "var ", "continue;", "break;" };
+        { "for", "byte", "bool", "decimal", "using", "double",
+        "float", "string", "string[]", "char", "int", "var",
+        "continue;", "break;" };
         //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
@@ -76,7 +78,7 @@ namespace auto_comment
             }
             else
             {
-                if (var_type == "int ")
+                if (var_type.Equals("int"))
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -93,7 +95,7 @@ namespace auto_comment
                     return comment;
                 }
                 //down from here is probably not working and requires testing
-                else if (var_type == "for ")
+                else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -115,7 +117,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == ">")
                         {
-                            for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                            for_checked_part = var_name + " is bigger then " + split_sentence[i + 1].Trim(';');
                         }
                         if (split_sentence[i] == var_name + "++)") //checkva dali she adne ili she mahne edno
                         {
@@ -129,7 +131,7 @@ namespace auto_comment
                     comment = " //A for loop with inner variable named " + var_name + " is equal to " + var_value + ", then asked if" + for_checked_part + gore_dolu + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "double ")
+                else if (var_type == "double")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -145,7 +147,7 @@ namespace auto_comment
                     comment = " //The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "float ")
+                else if (var_type == "float")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -161,7 +163,7 @@ namespace auto_comment
                     comment = " //The float (precision: 6-9) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "decimal ")
+                else if (var_type == "decimal")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -192,7 +194,7 @@ namespace auto_comment
                     comment = " //StOp UsInG vAr GaY FaGgOt" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "string ")
+                else if (var_type == "string")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -208,23 +210,7 @@ namespace auto_comment
                     comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "string[]")
-                {
-                    for (int i = 0; i < split_sentence.Length; i++)
-                    {
-                        if (split_sentence[i] == var_type)
-                        {
-                            var_name = split_sentence[i + 1];
-                        }
-                        if (split_sentence[i] == "=")
-                        {
-                            var_value = split_sentence[i + 1];
-                        }
-                    }
-                    comment = " //The collection of strings " + var_name + " is declared" + Environment.NewLine;
-                    return comment;
-                }
-                else if (var_type == "char ")
+                else if (var_type == "char")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -240,7 +226,7 @@ namespace auto_comment
                     comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "bool ")
+                else if (var_type == "bool")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -256,7 +242,7 @@ namespace auto_comment
                     comment = " //The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "byte ")
+                else if (var_type == "byte")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -272,7 +258,7 @@ namespace auto_comment
                     comment = " //The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "using ")
+                else if (var_type == "using")
                 {
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
