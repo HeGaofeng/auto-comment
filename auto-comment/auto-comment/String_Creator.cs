@@ -100,7 +100,11 @@ namespace auto_comment
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "int")
+                        if (split_sentence[i] == "(int")
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        else if(split_sentence[i] == "int")
                         {
                             var_name = split_sentence[i + 1];
                         }
