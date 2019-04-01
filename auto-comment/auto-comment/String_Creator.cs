@@ -136,6 +136,10 @@ namespace auto_comment
                                         for_trueorfalse = "(false)";
                                     }
                                 }
+                                else
+                                {
+                                    for_trueorfalse = "(false)";
+                                }
                             }
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
