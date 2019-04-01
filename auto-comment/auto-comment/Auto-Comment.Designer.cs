@@ -53,7 +53,7 @@
             this.btn_comment.MaximumSize = new System.Drawing.Size(482, 388);
             this.btn_comment.MinimumSize = new System.Drawing.Size(241, 194);
             this.btn_comment.Name = "btn_comment";
-            this.btn_comment.Size = new System.Drawing.Size(349, 279);
+            this.btn_comment.Size = new System.Drawing.Size(349, 294);
             this.btn_comment.TabIndex = 0;
             this.btn_comment.UseVisualStyleBackColor = false;
             this.btn_comment.Click += new System.EventHandler(this.btn_comment_Click);
