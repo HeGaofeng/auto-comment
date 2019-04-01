@@ -17,9 +17,9 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "for ", "byte ", "bool ", "decimal ", "using ", "double ",
-        "float ", "string ", "string[] ", "char ", "int ", "var ",
-        "continue;", "break;" };
+        { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
+        "double ", "float ", "string ", "string[] ", "char ", "int ",
+        "var ", "continue;", "break;" };
         //keywords to check for
         static IDictionary<string, string> user_variables = new Dictionary<string, string>();
         static string keyword_found = string.Empty;
@@ -41,7 +41,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("if") || curr_copy[i].Contains("else") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -99,6 +99,10 @@ namespace auto_comment
                     return comment;
                 }
                 //down from here is probably not working and requires testing
+                else if (var_type.Equals("else"))
+                {
+                    return " //If none of the statements above are true the following code will execute" + Environment.NewLine;
+                }
                 else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
