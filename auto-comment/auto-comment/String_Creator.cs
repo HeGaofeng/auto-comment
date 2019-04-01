@@ -17,7 +17,7 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "for ", "byte ", "bool ", "decimal ", "using ",
+        { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
         "double ", "float ", "string ", "string[] ", "char ", "int ",
         "var ", "continue;", "break;" };
         //keywords to check for
@@ -41,7 +41,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace") || curr_copy[i].Contains("else") || curr_copy[i].Contains("if"))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -71,6 +71,9 @@ namespace auto_comment
             string for_checked_part = "";
             string gore_dolu = "";
             string for_trueorfalse = "";
+            string for_whatcheck = "";
+            string if_whatcheck = "";
+            string if_trueorfalse = "";
 
             if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
             {
@@ -117,17 +120,17 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=" && split_sentence[i - 2] != "int")
                         {
+                            for_whatcheck = " equals to ";
                             for_checked_part = var_name + " is equeal to " + split_sentence[i + 1].Trim(';');
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                string idk = split_sentence[i + 1];
                                 if (item.Key == split_sentence[i + 1])
                                 {
-                                    if(Convert.ToInt32(var_value) == Convert.ToInt32(item.Value))
+                                    if (Convert.ToInt32(var_value) == Convert.ToInt32(item.Value))
                                     {
                                         for_trueorfalse = "(true)";
                                     }
-                                    else if(Convert.ToInt32(var_value) == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    else if (Convert.ToInt32(var_value) == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
                                     {
                                         for_trueorfalse = "(true)";
                                     }
@@ -144,11 +147,57 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
                         {
+                            for_whatcheck = " smaller then ";
                             for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if (Convert.ToInt32(var_value) < Convert.ToInt32(item.Value))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else if (Convert.ToInt32(var_value) < Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        for_trueorfalse = "(false)";
+                                    }
+                                }
+                                else
+                                {
+                                    for_trueorfalse = "(false)";
+                                }
+                            }
                         }
                         if (split_sentence[i] == ">")
                         {
+                            for_whatcheck = " bigger then ";
                             for_checked_part = var_name + " is bigger then " + split_sentence[i + 1].Trim(';');
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if (Convert.ToInt32(var_value) > Convert.ToInt32(item.Value))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else if (Convert.ToInt32(var_value) > Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        for_trueorfalse = "(false)";
+                                    }
+                                }
+                                else
+                                {
+                                    for_trueorfalse = "(false)";
+                                }
+                            }
                         }
                         if (split_sentence[i] == var_name + "++)") //checkva dali she adne ili she mahne edno
                         {
@@ -159,7 +208,7 @@ namespace auto_comment
                             gore_dolu = " ,if so minus 1 (one) to " + var_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + var_name + " is equal to " + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + var_name + " is" + for_whatcheck + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "double")
@@ -210,6 +259,115 @@ namespace auto_comment
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    return comment;
+                }
+                else if (var_type.Equals("else"))
+                {
+                    return " //If none of the statements above are true the following code will execute" + Environment.NewLine;
+                }
+                else if (var_type == "if")
+                {
+                    int innner = 0;
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == var_name)
+                                {
+                                    innner = Convert.ToInt32(item.Value);
+                                }
+                                else
+                                {
+                                    innner = Convert.ToInt32(item.Value.TrimEnd(';'));
+                                }
+                            }
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            if_whatcheck = " is equal to ";
+                            var_value = split_sentence[i + 1];
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if (innner == Convert.ToInt32(item.Value))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else if (innner == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        if_trueorfalse = "(false)";
+                                    }
+                                }
+                                else
+                                {
+                                    if_trueorfalse = "(false)";
+                                }
+                            }
+                        }
+                        if (split_sentence[i] == ">")
+                        {
+                            if_whatcheck = " is bigger then ";
+                            var_value = split_sentence[i + 1];
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if (innner > Convert.ToInt32(item.Value))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else if (innner > Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        if_trueorfalse = "(false)";
+                                    }
+                                }
+                                else
+                                {
+                                    if_trueorfalse = "(false)";
+                                }
+                            }
+                        }
+                        if (split_sentence[i] == "<")
+                        {
+                            if_whatcheck = " is smaller then ";
+                            var_value = split_sentence[i + 1];
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if (innner < Convert.ToInt32(item.Value))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else if (innner < Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        if_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        if_trueorfalse = "(false)";
+                                    }
+                                }
+                                else
+                                {
+                                    if_trueorfalse = "(false)";
+                                }
+                            }
+                        }
+                    }
+                    comment = " //The if question checks whether " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "break;")
