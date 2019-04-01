@@ -17,7 +17,7 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "for ", "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int ", "var ", "continue;", "break;" };
+        { "for ", "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int", "var ", "continue;", "break;" };
         //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
@@ -76,7 +76,7 @@ namespace auto_comment
             }
             else
             {
-                if (var_type == "int ")
+                if (var_type == "int")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
@@ -97,7 +97,7 @@ namespace auto_comment
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
-                        if (split_sentence[i] == "int")
+                        if (split_sentence[i] == "(int")
                         {
                             var_name = split_sentence[i + 1];
                         }
@@ -115,7 +115,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == ">")
                         {
-                            for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                            for_checked_part = var_name + " is bigger then " + split_sentence[i + 1].Trim(';');
                         }
                         if (split_sentence[i] == var_name + "++)") //checkva dali she adne ili she mahne edno
                         {
