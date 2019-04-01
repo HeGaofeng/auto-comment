@@ -17,7 +17,7 @@ namespace auto_comment
     {
         static string[] curr_copy;
         static string[] check_these =
-        { "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int ", "var ", "continue;", "break;" };
+        { "for ", "byte ", "bool ", "decimal ", "using ", "double ", "float ", "string ", "string[]", "char ", "int ", "var ", "continue;", "break;" };
         //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
@@ -38,7 +38,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("if") || curr_copy[i].Contains("else") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("="))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("if") || curr_copy[i].Contains("else") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -64,6 +64,8 @@ namespace auto_comment
             string var_name = "";
             string var_value = "";
             string comment = "";
+            string for_checked_part = "";
+            string gore_dolu = "";
 
             if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
             {
@@ -91,6 +93,42 @@ namespace auto_comment
                     return comment;
                 }
                 //down from here is probably not working and requires testing
+                else if (var_type == "for ")
+                {
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == "int")
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1].Trim(';');
+                        }
+                        if (split_sentence[i] == "=" && split_sentence[i - 2] != "int")
+                        {
+                            for_checked_part = var_name + " is equeal to " + split_sentence[i + 1].Trim(';');
+                        }
+                        if (split_sentence[i] == "<") //checkva kav check she ima
+                        {
+                            for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                        }
+                        if (split_sentence[i] == ">")
+                        {
+                            for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                        }
+                        if (split_sentence[i] == var_name + "++)") //checkva dali she adne ili she mahne edno
+                        {
+                            gore_dolu = " ,if so plus 1 (one) to " + var_name;
+                        }
+                        if (split_sentence[i] == var_name + "--)")
+                        {
+                            gore_dolu = " ,if so minus 1 (one) to " + var_name;
+                        }
+                    }
+                    comment = " //A for loop with inner variable named " + var_name + " is equal to " + var_value + ", then asked if" + for_checked_part + gore_dolu + Environment.NewLine;
+                    return comment;
+                }
                 else if (var_type == "double ")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
