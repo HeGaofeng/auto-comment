@@ -81,6 +81,7 @@
     <Compile Include="Auto-Comment.Designer.cs">
       <DependentUpon>Auto-Comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dict_Math.cs" />
     <Compile Include="Options_Items.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

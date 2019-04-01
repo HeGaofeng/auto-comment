@@ -24,6 +24,10 @@ namespace auto_comment
         public auto_comment()
         {
             InitializeComponent();
+            string hex = "#e38484";
+            Color Pink_Color = System.Drawing.ColorTranslator.FromHtml(hex);
+            hex = "#1e1e1e";
+            Color Gray_Color = System.Drawing.ColorTranslator.FromHtml(hex);
 
             //Everything below is used for the options menu
             // \/\/\/\/\/\/
@@ -45,6 +49,9 @@ namespace auto_comment
             Options_DropDown.SetBounds(726, 560, 280, 28);
             Options_DropDown.DropDownWidth = 430;
             Options_DropDown.Font = new Font("Agency FB", 24);
+            Options_DropDown.FlatStyle = FlatStyle.Flat;
+            Options_DropDown.BackColor = Gray_Color;
+            Options_DropDown.ForeColor = Pink_Color;
 
             Saved_Option.Click += new System.EventHandler(this.btn_Save_Preferences_Click);
 
@@ -53,8 +60,11 @@ namespace auto_comment
             Saved_Option.TextAlign = ContentAlignment.MiddleLeft;
             Saved_Option.FlatStyle = FlatStyle.Flat;
             Saved_Option.FlatAppearance.BorderSize = 0;
-            Saved_Option.SetBounds(726, 600, 124, 48);
+            Saved_Option.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            Saved_Option.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            Saved_Option.SetBounds(719, 616, 124, 48);
             Saved_Option.Font = new Font("Agency FB", 24);
+            Saved_Option.ForeColor = Pink_Color;
             Controls.Add(Options_DropDown); //dobavqme drop down menuto kum prozoreca
             Controls.Add(Saved_Option);
 
