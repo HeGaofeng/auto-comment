@@ -21,6 +21,7 @@ namespace auto_comment
         "float ", "string ", "string[] ", "char ", "int ", "var ",
         "continue;", "break;" };
         //keywords to check for
+        static IDictionary<string, string> user_variables = new Dictionary<string, string>();
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -69,6 +70,7 @@ namespace auto_comment
             string comment = "";
             string for_checked_part = "";
             string gore_dolu = "";
+            string for_trueorfalse = "";
 
             if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
             {
@@ -92,6 +94,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -115,6 +118,25 @@ namespace auto_comment
                         if (split_sentence[i] == "=" && split_sentence[i - 2] != "int")
                         {
                             for_checked_part = var_name + " is equeal to " + split_sentence[i + 1].Trim(';');
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                string idk = split_sentence[i + 1];
+                                if (item.Key == split_sentence[i + 1])
+                                {
+                                    if(Convert.ToInt32(var_value) == Convert.ToInt32(item.Value))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else if(Convert.ToInt32(var_value) == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                                    {
+                                        for_trueorfalse = "(true)";
+                                    }
+                                    else
+                                    {
+                                        for_trueorfalse = "(false)";
+                                    }
+                                }
+                            }
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
                         {
@@ -133,7 +155,7 @@ namespace auto_comment
                             gore_dolu = " ,if so minus 1 (one) to " + var_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + var_name + " is equal to " + var_value + ", then asked if" + for_checked_part + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + var_name + " is equal to " + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "double")
@@ -149,6 +171,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -181,6 +204,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -194,9 +218,21 @@ namespace auto_comment
                     comment = " //The continue statement passes control to the next iteration of the enclosing loop or switch statement" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type == "var ")
+                else if (var_type == "var")
                 {
-                    comment = " //StOp UsInG vAr GaY FaGgOt" + Environment.NewLine;
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == "=")
+                        {
+                            var_value = split_sentence[i + 1];
+                        }
+                    }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The var (the compiler determines the type) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string")
@@ -212,6 +248,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -228,6 +265,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -244,6 +282,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
@@ -260,6 +299,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
