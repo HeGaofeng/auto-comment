@@ -41,7 +41,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("if") || curr_copy[i].Contains("else") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -102,6 +102,10 @@ namespace auto_comment
                     return comment;
                 }
                 //down from here is probably not working and requires testing
+                else if (var_type.Equals("else"))
+                {
+                    return " //If none of the statements above are true the following code will execute" + Environment.NewLine;
+                }
                 else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -271,7 +275,7 @@ namespace auto_comment
                             var_name = split_sentence[i + 1];
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                if(item.Key == var_name)
+                                if (item.Key == var_name)
                                 {
                                     innner = Convert.ToInt32(item.Value);
                                 }
@@ -279,7 +283,7 @@ namespace auto_comment
                                 {
                                     innner = Convert.ToInt32(item.Value.TrimEnd(';'));
                                 }
-                            }    
+                            }
                         }
                         if (split_sentence[i] == "=")
                         {
