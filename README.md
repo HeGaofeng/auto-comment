@@ -1,4 +1,4 @@
-# Copyright 2019, Ivailo Hristv & Bojidar Atanasov, All rights reserved.
+# Copyright 2019, Ivailo Hristov & Bojidar Atanasov, All rights reserved.
 # Auto-Comment
 [BG/EN]  
 ---------------------------------------------------------------------------------------------------------  
