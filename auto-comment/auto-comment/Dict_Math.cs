@@ -8,23 +8,10 @@ namespace auto_comment
 {
     class Dict_Math
     {
-        int tryparser_int = 0;
-        double tryparser_double = 0;
-        float tryparser_float = 0;
-        byte tryparser_byte = 0;
-        bool tryparser_bool = true;
-        decimal tryparser_decimal = 0;
-        string tryparser_string = "";
-        char tryparser_char = 'a';
-        private static string Tryparser(string parsee)
+        private static int PlusEquals(string added_to, string added)
         {
 
-            return null;
-        }
-
-        private static string Plusequals(string added_to, string added)
-        {
-            return null;
+            return 0;
         }
     }
 }

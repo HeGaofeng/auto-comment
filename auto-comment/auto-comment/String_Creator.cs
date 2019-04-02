@@ -290,7 +290,7 @@ namespace auto_comment
                             //    }
                             //}
                         }
-                        if (split_sentence[i] == "=")
+                        if (split_sentence[i] == "==")
                         {
                             if_whatcheck = " is equal to ";
                             var_value = split_sentence[i + 1];
