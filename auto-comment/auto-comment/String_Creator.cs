@@ -390,10 +390,20 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            if(split_sentence[i + 1] == "new")
+                            {
+                                var_value = split_sentence[i + 2];
+                            }
+                            else
+                            {
+                                var_value = split_sentence[i + 1];
+                            }
                         }
                     }
-                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    if(var_name != "" && var_value != "")
+                    {
+                        user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    }
                     comment = " //The var (the compiler determines the type) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
                     return comment;
                 }
