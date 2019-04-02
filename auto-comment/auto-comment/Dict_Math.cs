@@ -16,7 +16,6 @@ namespace auto_comment
         decimal tryparser_decimal = 0;
         string tryparser_string = "";
         char tryparser_char = 'a';
-        var tryparser_var;
         private static string Tryparser(string parsee)
         {
 
