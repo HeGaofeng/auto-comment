@@ -86,6 +86,7 @@ namespace auto_comment
             }
             else
             {
+                user_variables.Remove("");
                 if (var_type.Equals("int"))
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -392,14 +393,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            if(split_sentence[i + 1] == "new")
-                            {
-                                var_value = split_sentence[i + 2];
-                            }
-                            else
-                            {
-                                var_value = split_sentence[i + 1];
-                            }
+                            var_value = split_sentence[i + 1];
                         }
                     }
                     if(var_name != "" && var_value != "")
@@ -483,6 +477,7 @@ namespace auto_comment
                     return comment;
                 }
             }
+            var_type = var_type.Trim();
             return Environment.NewLine;
         }
     }
