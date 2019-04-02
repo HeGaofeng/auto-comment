@@ -15,6 +15,7 @@ namespace auto_comment
 {
     class String_Creator
     {
+        public string var_type_public = string.Empty;
         static string[] curr_copy;
         static string[] check_these =
         { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
@@ -65,15 +66,16 @@ namespace auto_comment
         private static string Comment(string var_type)
         {
             var_type = var_type.Trim();
-            string var_name = "";
-            string var_value = "";
-            string comment = "";
-            string for_checked_part = "";
-            string gore_dolu = "";
-            string for_trueorfalse = "";
-            string for_whatcheck = "";
-            string if_whatcheck = "";
-            string if_trueorfalse = "";
+            var_type_public = var_type;
+            string var_name = string.Empty;
+            string var_value = string.Empty;
+            string comment = string.Empty;
+            string for_checked_part = string.Empty;
+            string gore_dolu = string.Empty;
+            string for_trueorfalse = string.Empty;
+            string for_whatcheck = string.Empty;
+            string if_whatcheck = string.Empty;
+            string if_trueorfalse = string.Empty;
 
             if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
             {
