@@ -15,7 +15,7 @@ namespace auto_comment
 {
     class String_Creator
     {
-        public string var_type_public = string.Empty;
+        public static string var_type_public = string.Empty;
         static string[] curr_copy;
         static string[] check_these =
         { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
@@ -77,9 +77,11 @@ namespace auto_comment
             string if_whatcheck = string.Empty;
             string if_trueorfalse = string.Empty;
 
-            if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
+            if (string.Join(" ", split_sentence).Contains("//") || var_type == "default" || !string.Join(" ", split_sentence).Contains("="))
             {
                 if (var_type == "default")
+                    return Environment.NewLine;
+                else if (!string.Join(" ", split_sentence).Contains("="))
                     return Environment.NewLine;
                 else
                     return " +" + Environment.NewLine;
@@ -101,7 +103,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The integer (a whole number) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The integer /a whole number/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 //down from here is probably not working and requires testing
@@ -228,7 +230,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The double (precision: 15-17) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The double /precision: 15-17/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float")
@@ -244,7 +246,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The float (precision: 6-9) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The float /precision: 6-9/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "decimal")
@@ -261,7 +263,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The decimal (preicion: 28-29) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The decimal /preicion: 28-29/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type.Equals("else"))
@@ -400,7 +402,7 @@ namespace auto_comment
                     {
                         user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     }
-                    comment = " //The var (the compiler determines the type) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The var /the compiler determines the type/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string")
@@ -417,7 +419,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The string (a collection of characters) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The string /a collection of characters/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "char")
@@ -434,7 +436,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The char (a unicode character) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The char /a unicode character/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "bool")
@@ -451,7 +453,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The boolean (true or false) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The boolean /true or false/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "byte")
@@ -468,7 +470,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The byte (whole number from 0 to 255) " + var_name + " is declared and it's value is " + var_value + Environment.NewLine;
+                    comment = " //The byte /whole number from 0 to 255/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "using")
