@@ -8,6 +8,11 @@ namespace auto_comment
 {
     class Dict_Math
     {
+        private static string Tryparser(string parsee)
+        {
+            return null;
+        }
+
         private static string Plusequals(string added_to, string added)
         {
             return null;
