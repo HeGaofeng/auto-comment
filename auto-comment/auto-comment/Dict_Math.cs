@@ -10,6 +10,13 @@ namespace auto_comment
     {
         int tryparser_int = 0;
         double tryparser_double = 0;
+        float tryparser_float = 0;
+        byte tryparser_byte = 0;
+        bool tryparser_bool = true;
+        decimal tryparser_decimal = 0;
+        string tryparser_string = "";
+        char tryparser_char = 'a';
+        var tryparser_var;
         private static string Tryparser(string parsee)
         {
 
