@@ -105,8 +105,9 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The integer /a whole number/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value.TrimEnd(';')));
+                    System.Windows.Forms.MessageBox.Show(user_variables[var_name]);
+                    comment = " //The integer /a whole number/ " + var_name + "(" + var_value.TrimEnd(';') + ")"+ Environment.NewLine;
                     return comment;
                 }
                 //down from here is probably not working and requires testing
@@ -524,8 +525,10 @@ namespace auto_comment
                 //math
                 else if(var_type == "+=")
                 {
-                    string pluseq_left = "";
-                    string pluseq_right = "";
+                    int pluseq_left = 0;
+                    int pluseq_right = 0;
+                    //string test;
+                    //test = Convert.ToString(pluseq_left);
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
                         if (split_sentence[i] == var_type)
@@ -533,14 +536,13 @@ namespace auto_comment
                             var_name = split_sentence[i - 1];
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                if(item.Key == var_name)
+                                if (item.Key == var_name)
                                 {
-                                    pluseq_left = user_variables[var_name].TrimEnd(';');
+                                    pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
                                 }
-                                //idk tf i wrote here
                                 //else
                                 //{
-                                   //pluseq_left = var_name;
+                                    //pluseq_left = Convert.ToInt32(var_name);
                                 //}
                             }
                             //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte"));
@@ -556,18 +558,21 @@ namespace auto_comment
                                     {
                                         if (split_sentence[j] == item.Key)
                                         {
-                                            var_value += user_variables[item.Key];
-                                            System.Windows.Forms.MessageBox.Show(user_variables[item.Key] + "1");
+                                            string bitch;
+                                            bitch = item.Key;
+                                            System.Windows.Forms.MessageBox.Show(bitch);
+                                            pluseq_right += Convert.ToInt32(user_variables[item.Key]);
+                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
                                         }
-                                        else
-                                        {
-                                            var_value += split_sentence[j];
-                                            System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
-                                        }
+                                        //else
+                                        //{
+                                            //var_value += split_sentence[j].TrimEnd(';');
+                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
+                                        //}
                                     }
                                 }
                             }
-                            pluseq_right = var_value;
+                            //pluseq_right = Convert.ToInt32(var_value);
                             //foreach (KeyValuePair<string, string> item in variable_types)
                             //{
                             //    if (item.Key == var_name)
@@ -582,7 +587,7 @@ namespace auto_comment
                         }
                     }
                     //user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
-                    comment = " //The equastion which adds " + pluseq_right + " to " + var_name + "(" + pluseq_left + ")" + Environment.NewLine;
+                    comment = " //The equation which adds " + pluseq_right + " to " + var_name + "(" + pluseq_left + ")" + Environment.NewLine;
                     return comment;
                 }
             }
