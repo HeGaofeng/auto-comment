@@ -244,7 +244,7 @@ namespace auto_comment
                             gore_dolu = " ,if so minus 1 (one) to " + var_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + var_name + " is" + for_whatcheck + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + var_name + " is " + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "double")
@@ -456,7 +456,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';').Trim('"');
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
@@ -536,7 +536,7 @@ namespace auto_comment
                             var_name = split_sentence[i - 1];
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                if (item.Key == var_name)
+                                if (item.Key == var_name && variable_types[var_name] != "string")
                                 {
                                     pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
                                 }
