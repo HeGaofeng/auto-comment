@@ -37,67 +37,49 @@
             // 
             // btn_comment
             // 
-            this.btn_comment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn_comment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_comment.BackColor = System.Drawing.Color.Transparent;
             this.btn_comment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_comment.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btn_comment.FlatAppearance.BorderSize = 0;
-            this.btn_comment.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btn_comment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_comment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_comment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_comment.Location = new System.Drawing.Point(714, 229);
-            this.btn_comment.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_comment.MaximumSize = new System.Drawing.Size(482, 388);
-            this.btn_comment.MinimumSize = new System.Drawing.Size(241, 194);
+            this.btn_comment.Location = new System.Drawing.Point(544, 173);
             this.btn_comment.Name = "btn_comment";
-            this.btn_comment.Size = new System.Drawing.Size(349, 294);
+            this.btn_comment.Size = new System.Drawing.Size(239, 212);
             this.btn_comment.TabIndex = 0;
             this.btn_comment.UseVisualStyleBackColor = false;
             this.btn_comment.Click += new System.EventHandler(this.btn_comment_Click);
             // 
             // btn_open
             // 
-            this.btn_open.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn_open.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_open.BackColor = System.Drawing.Color.Transparent;
             this.btn_open.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_open.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btn_open.FlatAppearance.BorderSize = 0;
-            this.btn_open.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btn_open.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_open.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_open.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_open.Location = new System.Drawing.Point(222, 229);
-            this.btn_open.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_open.MaximumSize = new System.Drawing.Size(482, 388);
-            this.btn_open.MinimumSize = new System.Drawing.Size(241, 194);
+            this.btn_open.Location = new System.Drawing.Point(164, 188);
             this.btn_open.Name = "btn_open";
-            this.btn_open.Size = new System.Drawing.Size(323, 279);
+            this.btn_open.Size = new System.Drawing.Size(258, 197);
             this.btn_open.TabIndex = 1;
             this.btn_open.UseVisualStyleBackColor = false;
             this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
             // 
             // btn_twitter
             // 
-            this.btn_twitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_twitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_twitter.BackColor = System.Drawing.Color.Transparent;
             this.btn_twitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_twitter.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btn_twitter.FlatAppearance.BorderSize = 0;
-            this.btn_twitter.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btn_twitter.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_twitter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_twitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_twitter.Location = new System.Drawing.Point(23, 512);
-            this.btn_twitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_twitter.MaximumSize = new System.Drawing.Size(284, 208);
-            this.btn_twitter.MinimumSize = new System.Drawing.Size(142, 104);
+            this.btn_twitter.Location = new System.Drawing.Point(24, 385);
             this.btn_twitter.Name = "btn_twitter";
-            this.btn_twitter.Size = new System.Drawing.Size(205, 146);
+            this.btn_twitter.Size = new System.Drawing.Size(131, 104);
             this.btn_twitter.TabIndex = 4;
             this.btn_twitter.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btn_twitter.UseVisualStyleBackColor = false;
@@ -105,23 +87,17 @@
             // 
             // btn_options
             // 
-            this.btn_options.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_options.BackColor = System.Drawing.Color.Transparent;
             this.btn_options.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btn_options.FlatAppearance.BorderSize = 0;
-            this.btn_options.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btn_options.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_options.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_options.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_options.Location = new System.Drawing.Point(1031, 565);
-            this.btn_options.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_options.MaximumSize = new System.Drawing.Size(292, 122);
-            this.btn_options.MinimumSize = new System.Drawing.Size(146, 61);
+            this.btn_options.Location = new System.Drawing.Point(766, 420);
             this.btn_options.Name = "btn_options";
-            this.btn_options.Size = new System.Drawing.Size(222, 93);
+            this.btn_options.Size = new System.Drawing.Size(166, 69);
             this.btn_options.TabIndex = 5;
             this.btn_options.UseVisualStyleBackColor = false;
             this.btn_options.Click += new System.EventHandler(this.btn_options_Click);
+
             // 
             // auto_comment
             // 
@@ -130,7 +106,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImage = global::auto_comment.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(944, 501);
             this.Controls.Add(this.btn_options);
             this.Controls.Add(this.btn_twitter);
             this.Controls.Add(this.btn_open);
@@ -138,12 +114,14 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1280, 720);
-            this.MinimumSize = new System.Drawing.Size(1280, 720);
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimumSize = new System.Drawing.Size(960, 540);
             this.Name = "auto_comment";
             this.Text = "Auto-Comment";
             this.ResumeLayout(false);
+            this.MaximizeBox = false;
+            // Set the MinimizeBox to false to remove the minimize box.
+            this.MinimizeBox = false;
 
         }
 
