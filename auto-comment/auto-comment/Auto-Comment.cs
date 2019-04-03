@@ -112,9 +112,9 @@ namespace auto_comment
                     {
                         text = fileContent;
                     }
+                    DialogResult file_selected = MessageBox.Show("File Selected");
                 }
             }
-            DialogResult file_selected = MessageBox.Show("File Selected");
         }
 
         private void btn_comment_Click(object sender, EventArgs e)
