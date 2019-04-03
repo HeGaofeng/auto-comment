@@ -106,7 +106,7 @@ namespace auto_comment
                         }
                     }
                     user_variables.Add(new KeyValuePair<string, string>(var_name, var_value.TrimEnd(';')));
-                    System.Windows.Forms.MessageBox.Show(user_variables[var_name]);
+                    //System.Windows.Forms.MessageBox.Show(user_variables[var_name]);
                     comment = " //The integer /a whole number/ " + var_name + "(" + var_value.TrimEnd(';') + ")"+ Environment.NewLine;
                     return comment;
                 }
@@ -552,15 +552,14 @@ namespace auto_comment
                             //var_value = split_sentence[i + 1];//v for loop
                             for (int j = i + 1; j < split_sentence.Length; j++)
                             {
-                                if(!split_sentence[j].Contains('"'))
-                                {
-                                    foreach (KeyValuePair<string, string> item in variable_types)
+                                string hh = split_sentence[j].TrimEnd(';');
+                                    foreach (KeyValuePair<string, string> item in user_variables)
                                     {
-                                        if (split_sentence[j] == item.Key)
+                                        if (split_sentence[j].TrimEnd(';') == item.Key)
                                         {
-                                            string bitch;
-                                            bitch = item.Key;
-                                            System.Windows.Forms.MessageBox.Show(bitch);
+                                            //string bitch;
+                                            //bitch = item.Key;
+                                            //System.Windows.Forms.MessageBox.Show(bitch);
                                             pluseq_right += Convert.ToInt32(user_variables[item.Key]);
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
                                         }
@@ -570,7 +569,6 @@ namespace auto_comment
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
                                         //}
                                     }
-                                }
                             }
                             //pluseq_right = Convert.ToInt32(var_value);
                             //foreach (KeyValuePair<string, string> item in variable_types)
