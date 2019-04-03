@@ -10,4 +10,3 @@ D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.ex
 D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.pdb
 D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.exe.manifest
 D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.application
-D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.csprojResolveAssemblyReference.cache
