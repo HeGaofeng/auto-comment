@@ -1,0 +1,13 @@
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto_comment.auto_comment.resources
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto_comment.Properties.Resources.resources
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.csproj.GenerateResource.Cache
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.exe
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.pdb
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.exe.config
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.exe.manifest
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.application
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.exe
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\bin\Debug\auto-comment.pdb
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.exe.manifest
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.application
+D:\GitHub Repos\auto-comment\auto-comment\auto-comment\obj\Debug\auto-comment.csprojResolveAssemblyReference.cache
