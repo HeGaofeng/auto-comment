@@ -130,6 +130,7 @@ namespace auto_comment
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
                     writer.WriteLine(text);
+
                 }
                 string Warning_Message2 = "Done.";
                 MessageBox.Show(Warning_Message2);
@@ -155,6 +156,7 @@ namespace auto_comment
                 Clipboard.SetText(text);
             }
             text = string.Empty;
+            //File.AppendAllText(filePath, "}");
         }
 
         private void btn_options_Click(object sender, EventArgs e)

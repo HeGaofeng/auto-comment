@@ -16,10 +16,12 @@ namespace auto_comment
     class String_Creator
     {
         //public static string var_type_public = string.Empty;
+        static string if_part_check = "";
+        static bool if_part_check_bool = false;
         static string[] curr_copy;
         static string[] check_these =
         { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
-        "double ", "float ", "string ", "string[] ", "char ", "int ",
+        "double ", "float ", "string ", "char ", "int ",
         "var ", "continue;", "break;", " += " };
         //keywords to check for
         static IDictionary<string, string> user_variables = new Dictionary<string, string>();
@@ -43,7 +45,7 @@ namespace auto_comment
                         return_string[i] = Comment(keyword_found); //tuk ni e komentara koito shte dobavim v kraq na reda
                         break;
                     }
-                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace"))
+                    else if (curr_copy[i].Contains("{") || curr_copy[i].Contains("}") || curr_copy[i].Contains("(") || curr_copy[i].Contains(")") || curr_copy[i].Contains("for") || curr_copy[i].Contains("return") || curr_copy[i].Contains(".") || curr_copy[i].Contains("=") || curr_copy[i].Contains("class") || curr_copy[i].Contains("namespace") || curr_copy[i].Contains("namespace"))
                     {
                         keyword_found = "default";
                         return_string[i] = Comment(keyword_found);
@@ -85,7 +87,7 @@ namespace auto_comment
                 else if (!string.Join(" ", split_sentence).Contains("="))
                     return Environment.NewLine;
                 else
-                    return " +" + Environment.NewLine;
+                    return " " + Environment.NewLine;
             }
             else
             {
@@ -410,8 +412,21 @@ namespace auto_comment
                             //    }
                             //}
                         }
+                        //idk if this shit works
+                        if(split_sentence[i] == "||")
+                        {
+                            if_part_check_bool = true;
+                            if_part_check += " or " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse;
+                        }
                     }
-                    comment = " //The if question checks whether " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse + Environment.NewLine;
+                    if(if_part_check_bool == true)
+                    {
+                        comment = " //The if question checks whether " + if_part_check + Environment.NewLine;
+                    }
+                    else
+                    {
+                        comment = " //The if question checks whether " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse + Environment.NewLine;
+                    }
                     return comment;
                 }
                 else if (var_type == "break;")
@@ -527,6 +542,7 @@ namespace auto_comment
                 {
                     int pluseq_left = 0;
                     int pluseq_right = 0;
+                    int bruh = 0;
                     //string test;
                     //test = Convert.ToString(pluseq_left);
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -536,26 +552,27 @@ namespace auto_comment
                             var_name = split_sentence[i - 1];
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                if (item.Key == var_name)
+                                if (item.Key == var_name && variable_types[var_name] == "int")
                                 {
                                     pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
                                 }
-                                //else
-                                //{
-                                    //pluseq_left = Convert.ToInt32(var_name);
-                                //}
+                                else if(int.TryParse(var_name, out bruh))
+                                {
+                                    pluseq_left += Convert.ToInt32(var_name);
+                                }
                             }
                             //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte"));
                         }
                         if (split_sentence[i] == "+=")
                         {
+                            //System.Windows.Forms.MessageBox.Show(Convert.ToString(i));
                             //var_value = split_sentence[i + 1];//v for loop
-                            for (int j = i + 1; j < split_sentence.Length; j++)
+                            for (int j = Array.IndexOf(split_sentence, "+="); j < split_sentence.Length; j++)
                             {
                                 //string hh = split_sentence[j].TrimEnd(';');
                                     foreach (KeyValuePair<string, string> item in user_variables)
                                     {
-                                        if (split_sentence[j].TrimEnd(';') == item.Key)
+                                        if (split_sentence[j].TrimEnd(';') == item.Key && variable_types[item.Key] == "int")
                                         {
                                             //string bitch;
                                             //bitch = item.Key;
@@ -563,11 +580,12 @@ namespace auto_comment
                                             pluseq_right += Convert.ToInt32(user_variables[item.Key]);
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
                                         }
-                                        //else
-                                        //{
+                                        else if(int.TryParse(split_sentence[j].TrimEnd(';'), out bruh))
+                                        {
+                                        pluseq_right += Convert.ToInt32(split_sentence[j].TrimEnd(';'));
                                             //var_value += split_sentence[j].TrimEnd(';');
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
-                                        //}
+                                        }
                                     }
                             }
                             //pluseq_right = Convert.ToInt32(var_value);
