@@ -552,7 +552,7 @@ namespace auto_comment
                             //var_value = split_sentence[i + 1];//v for loop
                             for (int j = i + 1; j < split_sentence.Length; j++)
                             {
-                                string hh = split_sentence[j].TrimEnd(';');
+                                //string hh = split_sentence[j].TrimEnd(';');
                                     foreach (KeyValuePair<string, string> item in user_variables)
                                     {
                                         if (split_sentence[j].TrimEnd(';') == item.Key)
