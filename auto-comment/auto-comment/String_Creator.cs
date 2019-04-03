@@ -536,7 +536,7 @@ namespace auto_comment
                             var_name = split_sentence[i - 1];
                             foreach (KeyValuePair<string, string> item in user_variables)
                             {
-                                if (item.Key == var_name && variable_types[var_name] != "string")
+                                if (item.Key == var_name)
                                 {
                                     pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
                                 }
