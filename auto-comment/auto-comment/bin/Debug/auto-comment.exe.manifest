@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ai+TLGG5opM3FGqKCeOxq2ZaOU6/9ov1AhFkusPAOKU=</dsig:DigestValue>
+        <dsig:DigestValue>9FKYBPSPGfDugDgFruHed4CALb7BfmTZZleeZo7kCP4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="auto-comment.exe.config" size="189">
+  <file name="auto-comment.exe.config" size="184">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+      <dsig:DigestValue>jWVCngsqgsEdPtxOoE7SAK7f6h1++LmE6IqOl8/1R3A=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

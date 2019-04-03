@@ -143,7 +143,7 @@ namespace auto_comment
                             gore_dolu = " ,if so minus 1 (one) to " + var_name;
                         }
                     }
-                    comment = " //A for loop with inner variable named " + var_name + " is" + for_whatcheck + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
+                    comment = " //A for loop with inner variable named " + var_name + " is " + var_value + for_trueorfalse + ", then asked if " + for_checked_part + gore_dolu + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "double")
