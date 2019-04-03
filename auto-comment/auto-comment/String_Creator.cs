@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+//get type check daloi funci pochva s _ ili char ne cifra
 
 namespace auto_comment
 {
     class String_Creator
     {
+        //public static string var_type_public = string.Empty;
         static string[] curr_copy;
         static string[] check_these =
-        { "using ", "for ", "byte ", "bool ", "decimal ",
+        { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
         "double ", "float ", "string ", "string[] ", "char ", "int ",
-        "var ", "continue;", "break;", "if ", "else "};
+        "var ", "continue;", "break;", " += " };
         //keywords to check for
+        static IDictionary<string, string> user_variables = new Dictionary<string, string>();
+        static IDictionary<string, string> variable_types = new Dictionary<string, string>();
         static string keyword_found = string.Empty;
         static string[] split_sentence;
         static string result = string.Empty;
@@ -63,6 +67,7 @@ namespace auto_comment
         private static string Comment(string var_type)
         {
             var_type = var_type.Trim();
+            //var_type_public = var_type;
             string var_name = string.Empty;
             string var_value = string.Empty;
             string comment = string.Empty;
@@ -73,15 +78,19 @@ namespace auto_comment
             string if_whatcheck = string.Empty;
             string if_trueorfalse = string.Empty;
 
-            if (string.Join(" ", split_sentence).Contains("//") || var_type == "default")
+            if (string.Join(" ", split_sentence).Contains("//") || var_type == "default" || !string.Join(" ", split_sentence).Contains("="))
             {
                 if (var_type == "default")
+                    return Environment.NewLine;
+                else if (!string.Join(" ", split_sentence).Contains("="))
                     return Environment.NewLine;
                 else
                     return " +" + Environment.NewLine;
             }
             else
             {
+                user_variables.Remove("");
+                variable_types.Remove("");
                 if (var_type.Equals("int"))
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -89,15 +98,19 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "int"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The integer /a whole number/ " + var_name + "(" + var_value.TrimEnd(';') + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value.TrimEnd(';')));
+                    //System.Windows.Forms.MessageBox.Show(user_variables[var_name]);
+                    comment = " //The integer /a whole number/ " + var_name + "(" + var_value.TrimEnd(';') + ")"+ Environment.NewLine;
                     return comment;
                 }
+                //down from here is probably not working and requires testing
                 else if (var_type == "for")
                 {
                     for (int i = 0; i < split_sentence.Length; i++)
@@ -118,21 +131,109 @@ namespace auto_comment
                         {
                             for_whatcheck = " equals to ";
                             for_checked_part = var_name + " is equeal to " + split_sentence[i + 1].Trim(';');
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (Convert.ToInt32(var_value) == Convert.ToInt32(item.Value))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else if (Convert.ToInt32(var_value) == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            for_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        for_trueorfalse = "(false)";
+                            //    }
+                            //}
                         }
                         if (split_sentence[i] == "!=" && split_sentence[i - 2] != "int")
                         {
                             for_whatcheck = " does not equal to ";
                             for_checked_part = var_name + " does not equal to " + split_sentence[i + 1].Trim(';');
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (Convert.ToInt32(var_value) == Convert.ToInt32(item.Value))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else if (Convert.ToInt32(var_value) == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            for_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        for_trueorfalse = "(false)";
+                            //    }
+                            //}
                         }
                         if (split_sentence[i] == "<") //checkva kav check she ima
                         {
                             for_whatcheck = " smaller then ";
                             for_checked_part = var_name + " is smaller then " + split_sentence[i + 1].Trim(';');
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (Convert.ToInt32(var_value) < Convert.ToInt32(item.Value))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else if (Convert.ToInt32(var_value) < Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            for_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        for_trueorfalse = "(false)";
+                            //    }
+                            //}
                         }
                         if (split_sentence[i] == ">")
                         {
                             for_whatcheck = " bigger then ";
                             for_checked_part = var_name + " is bigger then " + split_sentence[i + 1].Trim(';');
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (Convert.ToInt32(var_value) > Convert.ToInt32(item.Value))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else if (Convert.ToInt32(var_value) > Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            for_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            for_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        for_trueorfalse = "(false)";
+                            //    }
+                            //}
                         }
                         if (split_sentence[i] == var_name + "++)") //checkva dali she adne ili she mahne edno
                         {
@@ -153,13 +254,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "double"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The double /precision: 15-17/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The double /precision: 15-17/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "float")
@@ -169,13 +272,14 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "float"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The float /precision: 6-9/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    comment = " //The float /precision: 6-9/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "decimal")
@@ -185,13 +289,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "decimal"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The decimal /preicion: 28-29/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The decimal /preicion: 28-29/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type.Equals("else"))
@@ -200,7 +306,112 @@ namespace auto_comment
                 }
                 else if (var_type == "if")
                 {
-                    comment = " //The if statement checks if what's inside the brackets is true" + Environment.NewLine;
+                    //int innner = 0;
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i + 1];
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == var_name)
+                            //    {
+                            //        innner = Convert.ToInt32(item.Value);
+                            //    }
+                            //    else
+                            //    {
+                            //        innner = Convert.ToInt32(item.Value.TrimEnd(';'));
+                            //    }
+                            //}
+                        }
+                        if (split_sentence[i] == "==")
+                        {
+                            if_whatcheck = " is equal to ";
+                            var_value = split_sentence[i + 1];
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (innner == Convert.ToInt32(item.Value))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else if (innner == Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            if_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        if_trueorfalse = "(false)";
+                            //    }
+                            //}
+                        }
+                        if(split_sentence[i] == "!=")
+                        {
+                            if_whatcheck = " does not equal to ";
+                            var_value = split_sentence[i + 1];
+                        }
+                        if (split_sentence[i] == ">")
+                        {
+                            if_whatcheck = " is bigger then ";
+                            var_value = split_sentence[i + 1];
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (innner > Convert.ToInt32(item.Value))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else if (innner > Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            if_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        if_trueorfalse = "(false)";
+                            //    }
+                            //}
+                        }
+                        if (split_sentence[i] == "<")
+                        {
+                            if_whatcheck = " is smaller then ";
+                            var_value = split_sentence[i + 1];
+                            //foreach (KeyValuePair<string, string> item in user_variables)
+                            //{
+                            //    if (item.Key == split_sentence[i + 1])
+                            //    {
+                            //        if (innner < Convert.ToInt32(item.Value))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else if (innner < Convert.ToInt32(split_sentence[i + 1].Trim(';')))
+                            //        {
+                            //            if_trueorfalse = "(true)";
+                            //        }
+                            //        else
+                            //        {
+                            //            if_trueorfalse = "(false)";
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        if_trueorfalse = "(false)";
+                            //    }
+                            //}
+                        }
+                    }
+                    comment = " //The if question checks whether " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "break;")
@@ -220,13 +431,18 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "var"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The var /the compiler determines the type/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    if(var_name != "" && var_value != "")
+                    {
+                        user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    }
+                    comment = " //The var /the compiler determines the type/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "string")
@@ -236,13 +452,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "string"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The string /a collection of characters/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The string /a collection of characters/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "char")
@@ -252,13 +470,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "char"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The char /a unicode character/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The char /a unicode character/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "bool")
@@ -268,13 +488,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "bool"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The boolean /true or false/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The boolean /true or false/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "byte")
@@ -284,13 +506,15 @@ namespace auto_comment
                         if (split_sentence[i] == var_type)
                         {
                             var_name = split_sentence[i + 1];
+                            variable_types.Add(new KeyValuePair<string, string>(var_name, "byte"));
                         }
                         if (split_sentence[i] == "=")
                         {
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    comment = " //The byte /whole number from 0 to 255/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The byte /whole number from 0 to 255/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "using")
@@ -298,7 +522,76 @@ namespace auto_comment
                     comment = " //Here we are declaring a namespace" + Environment.NewLine;
                     return comment;
                 }
+                //math
+                else if(var_type == "+=")
+                {
+                    int pluseq_left = 0;
+                    int pluseq_right = 0;
+                    //string test;
+                    //test = Convert.ToString(pluseq_left);
+                    for (int i = 0; i < split_sentence.Length; i++)
+                    {
+                        if (split_sentence[i] == var_type)
+                        {
+                            var_name = split_sentence[i - 1];
+                            foreach (KeyValuePair<string, string> item in user_variables)
+                            {
+                                if (item.Key == var_name)
+                                {
+                                    pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
+                                }
+                                //else
+                                //{
+                                    //pluseq_left = Convert.ToInt32(var_name);
+                                //}
+                            }
+                            //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte"));
+                        }
+                        if (split_sentence[i] == "+=")
+                        {
+                            //var_value = split_sentence[i + 1];//v for loop
+                            for (int j = i + 1; j < split_sentence.Length; j++)
+                            {
+                                //string hh = split_sentence[j].TrimEnd(';');
+                                    foreach (KeyValuePair<string, string> item in user_variables)
+                                    {
+                                        if (split_sentence[j].TrimEnd(';') == item.Key)
+                                        {
+                                            //string bitch;
+                                            //bitch = item.Key;
+                                            //System.Windows.Forms.MessageBox.Show(bitch);
+                                            pluseq_right += Convert.ToInt32(user_variables[item.Key]);
+                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
+                                        }
+                                        //else
+                                        //{
+                                            //var_value += split_sentence[j].TrimEnd(';');
+                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
+                                        //}
+                                    }
+                            }
+                            //pluseq_right = Convert.ToInt32(var_value);
+                            //foreach (KeyValuePair<string, string> item in variable_types)
+                            //{
+                            //    if (item.Key == var_name)
+                            //    {
+                            //        pluseq_right = user_variables[var_value];
+                            //    }
+                            //    else
+                            //    {
+                            //        pluseq_left = var_name;
+                            //    }
+                            //}
+                        }
+                    }
+                    //user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    comment = " //The equation which adds " + pluseq_right + " to " + var_name + "(" + pluseq_left + ")" + Environment.NewLine;
+                    return comment;
+                }
             }
+            var_type = var_type.Trim();
+            user_variables.Remove("");
+            variable_types.Remove("");
             return Environment.NewLine;
         }
     }
