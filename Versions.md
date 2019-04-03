@@ -3,7 +3,7 @@
 # Version 1.0.3 - "Somewhat final version"
 New stuff:  
 Small improvements  
-Broken stuff:
+Broken stuff:  
 Nothing
 --------------------------------------------------------------------------------  
 # Version 1.0.2 - "Stable version"  
