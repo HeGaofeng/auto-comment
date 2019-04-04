@@ -263,7 +263,7 @@ namespace auto_comment
                             var_value = split_sentence[i + 1];
                         }
                     }
-                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
+                    user_variables.Add(new KeyValuePair<string, string>(var_name, var_value.Trim(';')));
                     comment = " //The double /precision: 15-17/ " + var_name + "(" + var_value  + ")"+ Environment.NewLine;
                     return comment;
                 }
@@ -542,11 +542,17 @@ namespace auto_comment
                 //math
                 else if(var_type == "+=")
                 {
-                    int pluseq_left = 0;
-                    int pluseq_right = 0;
+                    int pluseq_left_int = 0;
+                    int pluseq_right_int = 0;
+                    double pluseq_left_double = 0;
+                    double pluseq_right_double = 0;
+                    string pluseq_left = "";
+                    string pluseq_right = "";
+
                     int bruh = 0;
+                    double bruh_double = 0;
                     //string test;
-                    //test = Convert.ToString(pluseq_left);
+                    //test = Convert.ToString(pluseq_left_int);
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
                         if (split_sentence[i] == var_type)
@@ -556,15 +562,24 @@ namespace auto_comment
                             {
                                 if (item.Key == var_name && variable_types[var_name] == "int")
                                 {
-                                    pluseq_left = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
+                                    pluseq_left_int = Convert.ToInt32(user_variables[var_name].TrimEnd(';'));
                                 }
                                 else if(int.TryParse(var_name, out bruh))
                                 {
-                                    pluseq_left += Convert.ToInt32(var_name);
+                                    pluseq_left_int += Convert.ToInt32(var_name);
+                                }
+                                else if(item.Key == var_name && variable_types[var_name] == "double")
+                                {
+                                    pluseq_left_double = Convert.ToDouble(user_variables[var_name].TrimEnd(';'));
+                                }
+                                else if(double.TryParse(var_name, out bruh_double))
+                                {
+                                    pluseq_left_double += Convert.ToDouble(var_name);
                                 }
                             }
                             //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte")); 
                         }
+                        pluseq_left = Convert.ToString(pluseq_left_int) + Convert.ToString(pluseq_left_double);
                         if (split_sentence[i] == "+=")
                         {
                             //System.Windows.Forms.MessageBox.Show(Convert.ToString(i));
@@ -579,31 +594,51 @@ namespace auto_comment
                                             //string bitch;
                                             //bitch = item.Key;
                                             //System.Windows.Forms.MessageBox.Show(bitch);
-                                            pluseq_right += Convert.ToInt32(user_variables[item.Key]);
+                                            pluseq_right_int += Convert.ToInt32(user_variables[item.Key]);
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
                                         }
                                         else if(int.TryParse(split_sentence[j].TrimEnd(';'), out bruh))
                                         {
-                                        pluseq_right += Convert.ToInt32(split_sentence[j].TrimEnd(';'));
+                                        pluseq_right_int += Convert.ToInt32(split_sentence[j].TrimEnd(';'));
                                             //var_value += split_sentence[j].TrimEnd(';');
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
                                         }
+                                        else if(split_sentence[j].TrimEnd(';') == item.Key && variable_types[item.Key] == "double")
+                                        {
+                                        pluseq_right_double += Convert.ToDouble(user_variables[item.Key]);
+                                        }
+                                        else if(double.TryParse(split_sentence[j].TrimEnd(';'), out bruh_double))
+                                        {
+                                        pluseq_right_double += Convert.ToDouble(split_sentence[j].TrimEnd(';'));
+                                        }
+
                                     }
-                                pluseq_right -= bruh;
+                                pluseq_right_int -= bruh;
+                                pluseq_right_double -= bruh_double;
+                                //pluseq_right = Convert.ToString(pluseq_right_int) + Convert.ToString(pluseq_right_double);
                             }
-                            //pluseq_right = Convert.ToInt32(var_value);
+                            //pluseq_right_int = Convert.ToInt32(var_value);
                             //foreach (KeyValuePair<string, string> item in variable_types)
                             //{
                             //    if (item.Key == var_name)
                             //    {
-                            //        pluseq_right = user_variables[var_value];
+                            //        pluseq_right_int = user_variables[var_value];
                             //    }
                             //    else
                             //    {
-                            //        pluseq_left = var_name;
+                            //        pluseq_left_int = var_name;
                             //    }
                             //}
                         }
+                        //pluseq_right = Convert.ToString(pluseq_right_int) + Convert.ToString(pluseq_right_double);
+                    }
+                    if (pluseq_right_int != 0)
+                    {
+                        pluseq_right += Convert.ToString(pluseq_right_int);
+                    }
+                    else if (pluseq_right_double != 0)
+                    {
+                        pluseq_right += Convert.ToString(pluseq_right_double);
                     }
                     //user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The equation which adds " + pluseq_right + " to " + var_name + "(" + pluseq_left + ")" + Environment.NewLine;
