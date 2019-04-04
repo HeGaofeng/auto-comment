@@ -22,7 +22,7 @@ namespace auto_comment
         static string[] check_these =
         { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
         "double ", "float ", "string ", "char ", "int ",
-        "var ", "continue;", "break;", " += " };
+        "var ", "continue;", "break;", " += "}; //za convert she trebva napravi da splitva i na tochki? ili prosto da tarsa vsichki vazmogni?
         //keywords to check for
         static IDictionary<string, string> user_variables = new Dictionary<string, string>();
         static IDictionary<string, string> variable_types = new Dictionary<string, string>();
