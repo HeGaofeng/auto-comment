@@ -304,7 +304,7 @@ namespace auto_comment
                 }
                 else if (var_type.Equals("else"))
                 {
-                    return " //If none of the statements above are true the following code will execute" + Environment.NewLine;
+                    return comment = " //If none of the statements above are true the following code will execute" + Environment.NewLine;
                 }
                 else if (var_type == "if")
                 {
@@ -422,10 +422,12 @@ namespace auto_comment
                     if(if_part_check_bool == true)
                     {
                         comment = " //The if question checks whether " + if_part_check + Environment.NewLine;
+                        return comment;
                     }
                     else
                     {
                         comment = " //The if question checks whether " + var_name.TrimStart('(') + if_whatcheck + var_value.TrimEnd(')') + if_trueorfalse + Environment.NewLine;
+                        return comment;
                     }
                     return comment;
                 }
