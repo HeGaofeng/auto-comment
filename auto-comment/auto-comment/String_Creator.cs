@@ -579,7 +579,7 @@ namespace auto_comment
                             }
                             //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte")); 
                         }
-                        pluseq_left = Convert.ToString(pluseq_left_int) + Convert.ToString(pluseq_left_double);
+                        //pluseq_left = Convert.ToString(pluseq_left_int) + Convert.ToString(pluseq_left_double);
                         if (split_sentence[i] == "+=")
                         {
                             //System.Windows.Forms.MessageBox.Show(Convert.ToString(i));
@@ -639,6 +639,14 @@ namespace auto_comment
                     else if (pluseq_right_double != 0)
                     {
                         pluseq_right += Convert.ToString(pluseq_right_double);
+                    }
+                    if (pluseq_left_int != 0)
+                    {
+                        pluseq_left += Convert.ToString(pluseq_left_int);
+                    }
+                    else if (pluseq_left_double != 0)
+                    {
+                        pluseq_left += Convert.ToString(pluseq_left_double);
                     }
                     //user_variables.Add(new KeyValuePair<string, string>(var_name, var_value));
                     comment = " //The equation which adds " + pluseq_right + " to " + var_name + "(" + pluseq_left + ")" + Environment.NewLine;
