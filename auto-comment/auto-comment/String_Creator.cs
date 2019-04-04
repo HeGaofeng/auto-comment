@@ -561,7 +561,7 @@ namespace auto_comment
                                     pluseq_left += Convert.ToInt32(var_name);
                                 }
                             }
-                            //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte"));
+                            //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte")); 
                         }
                         if (split_sentence[i] == "+=")
                         {
@@ -587,6 +587,7 @@ namespace auto_comment
                                             //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
                                         }
                                     }
+                                pluseq_right -= bruh;
                             }
                             //pluseq_right = Convert.ToInt32(var_value);
                             //foreach (KeyValuePair<string, string> item in variable_types)
