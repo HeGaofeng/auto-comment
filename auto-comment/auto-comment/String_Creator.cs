@@ -78,7 +78,7 @@ namespace auto_comment
                 if (var_type == "default")
                     return Environment.NewLine;
                 else
-                    return " +" + Environment.NewLine;
+                    return "" + Environment.NewLine;
             }
             else
             {
@@ -92,7 +92,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The integer /a whole number/ " + var_name + "(" + var_value.TrimEnd(';') + ")" + Environment.NewLine;
@@ -156,7 +156,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The double /precision: 15-17/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
@@ -172,7 +172,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The float /precision: 6-9/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
@@ -188,15 +188,16 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The decimal /preicion: 28-29/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
                     return comment;
                 }
-                else if (var_type.Equals("else"))
+                else if (var_type == "else")
                 {
-                    return " //If none of the statements above are true the following code will execute" + Environment.NewLine;
+                    comment = " //If none of the statements above are true then the following code will execute" + Environment.NewLine;
+                    return comment;
                 }
                 else if (var_type == "if")
                 {
@@ -223,7 +224,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The var /the compiler determines the type/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
@@ -239,10 +240,10 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value += split_sentence[i + 1].TrimEnd('"');
                         }
                     }
-                    comment = " //The string /a collection of characters/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
+                    comment = " //The string /a collection of characters/ " + var_name + " is created" + Environment.NewLine;
                     return comment;
                 }
                 else if (var_type == "char")
@@ -255,7 +256,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The char /a unicode character/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
@@ -287,7 +288,7 @@ namespace auto_comment
                         }
                         if (split_sentence[i] == "=")
                         {
-                            var_value = split_sentence[i + 1];
+                            var_value = split_sentence[i + 1].TrimEnd(';');
                         }
                     }
                     comment = " //The byte /whole number from 0 to 255/ " + var_name + "(" + var_value + ")" + Environment.NewLine;
