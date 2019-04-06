@@ -18,7 +18,7 @@ namespace auto_comment
         static string[] check_these =
         { "using ", "for ", "byte ", "bool ", "decimal ",
         "double ", "float ", "string ", "string[] ", "char ", "int ",
-        "var ", "continue;", "break;", "if ", "else "};
+        "var ", "continue;", "break;", "if ", "else"};
         //keywords to check for
         static string keyword_found = string.Empty;
         static string[] split_sentence;
