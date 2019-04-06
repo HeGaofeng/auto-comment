@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Globalization;
 //get type check daloi funci pochva s _ ili char ne cifra
 
 namespace auto_comment
@@ -577,60 +578,35 @@ namespace auto_comment
                                     pluseq_left_double += Convert.ToDouble(var_name);
                                 }
                             }
-                            //variable_types.Add(new KeyValuePair<string, string>(var_name, "byte")); 
                         }
-                        //pluseq_left = Convert.ToString(pluseq_left_int) + Convert.ToString(pluseq_left_double);
                         if (split_sentence[i] == "+=")
                         {
-                            //System.Windows.Forms.MessageBox.Show(Convert.ToString(i));
-                            //var_value = split_sentence[i + 1];//v for loop
                             for (int j = Array.IndexOf(split_sentence, "+="); j < split_sentence.Length; j++)
                             {
-                                //string hh = split_sentence[j].TrimEnd(';');
                                     foreach (KeyValuePair<string, string> item in user_variables)
                                     {
                                         if (split_sentence[j].TrimEnd(';') == item.Key && variable_types[item.Key] == "int")
                                         {
-                                            //string bitch;
-                                            //bitch = item.Key;
-                                            //System.Windows.Forms.MessageBox.Show(bitch);
                                             pluseq_right_int += Convert.ToInt32(user_variables[item.Key]);
-                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key].TrimEnd(';') + "1");
                                         }
                                         else if(int.TryParse(split_sentence[j].TrimEnd(';'), out bruh))
                                         {
                                         pluseq_right_int += Convert.ToInt32(split_sentence[j].TrimEnd(';'));
-                                            //var_value += split_sentence[j].TrimEnd(';');
-                                            //System.Windows.Forms.MessageBox.Show(user_variables[item.Key]);
                                         }
                                         else if(split_sentence[j].TrimEnd(';') == item.Key && variable_types[item.Key] == "double")
                                         {
-                                        pluseq_right_double += Convert.ToDouble(user_variables[item.Key]);
+                                        pluseq_right_double += Convert.ToDouble(user_variables[item.Key], CultureInfo.InvariantCulture);
                                         }
                                         else if(double.TryParse(split_sentence[j].TrimEnd(';'), out bruh_double))
                                         {
-                                        pluseq_right_double += Convert.ToDouble(split_sentence[j].TrimEnd(';'));
+                                        pluseq_right_double += Convert.ToDouble(split_sentence[j].TrimEnd(';'), CultureInfo.InvariantCulture);
                                         }
 
                                     }
                                 pluseq_right_int -= bruh;
                                 pluseq_right_double -= bruh_double;
-                                //pluseq_right = Convert.ToString(pluseq_right_int) + Convert.ToString(pluseq_right_double);
                             }
-                            //pluseq_right_int = Convert.ToInt32(var_value);
-                            //foreach (KeyValuePair<string, string> item in variable_types)
-                            //{
-                            //    if (item.Key == var_name)
-                            //    {
-                            //        pluseq_right_int = user_variables[var_value];
-                            //    }
-                            //    else
-                            //    {
-                            //        pluseq_left_int = var_name;
-                            //    }
-                            //}
                         }
-                        //pluseq_right = Convert.ToString(pluseq_right_int) + Convert.ToString(pluseq_right_double);
                     }
                     if (pluseq_right_int != 0)
                     {
