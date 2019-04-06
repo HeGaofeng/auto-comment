@@ -20,6 +20,12 @@ namespace auto_comment
         static string if_part_check = "";
         static bool if_part_check_bool = false;
         static string[] curr_copy;
+        static int bruh = 0;
+        static double bruh_double = 0;
+        static string bruh_string = "";
+        static byte bruh_byte = 0;
+        static decimal bruh_decimal = 0;
+        static float bruh_float = 0;
         static string[] check_these =
         { "if", "else", "for ", "byte ", "bool ", "decimal ", "using ",
         "double ", "float ", "string ", "char ", "int ",
@@ -549,11 +555,13 @@ namespace auto_comment
                     double pluseq_right_double = 0;
                     string pluseq_left = "";
                     string pluseq_right = "";
-
-                    int bruh = 0;
-                    double bruh_double = 0;
-                    //string test;
-                    //test = Convert.ToString(pluseq_left_int);
+                    byte pluseq_left_byte = 0;
+                    byte pluseq_right_byte = 0;
+                    decimal pluseq_left_decimal = 0;
+                    decimal pluseq_right_decimal = 0;
+                    float pluseq_left_float = 0;
+                    float pluseq_right_float = 0;
+                    //char pluseq_left_char = 'a';
                     for (int i = 0; i < split_sentence.Length; i++)
                     {
                         if (split_sentence[i] == var_type)
@@ -567,15 +575,39 @@ namespace auto_comment
                                 }
                                 else if(int.TryParse(var_name, out bruh))
                                 {
-                                    pluseq_left_int += Convert.ToInt32(var_name);
+                                    pluseq_left_int = Convert.ToInt32(var_name);
                                 }
                                 else if(item.Key == var_name && variable_types[var_name] == "double")
                                 {
-                                    pluseq_left_double = Convert.ToDouble(user_variables[var_name].TrimEnd(';'));
+                                    pluseq_left_double = Convert.ToDouble(user_variables[var_name].TrimEnd(';'), CultureInfo.InvariantCulture);
                                 }
                                 else if(double.TryParse(var_name, out bruh_double))
                                 {
-                                    pluseq_left_double += Convert.ToDouble(var_name);
+                                    pluseq_left_double = Convert.ToDouble(var_name, CultureInfo.InvariantCulture);
+                                }
+                                else if (item.Key == var_name && variable_types[var_name] == "byte")
+                                {
+                                    pluseq_left_byte = Convert.ToByte(user_variables[var_name].TrimEnd(';'));
+                                }
+                                else if (byte.TryParse(var_name, out bruh_byte))
+                                {
+                                    pluseq_left_byte = Convert.ToByte(var_name);
+                                }
+                                else if (item.Key == var_name && variable_types[var_name] == "float")
+                                {
+                                    pluseq_left_float = float.Parse(user_variables[var_name].TrimEnd(';'));
+                                }
+                                else if (float.TryParse(var_name, out bruh_float))
+                                {
+                                    pluseq_left_float = float.Parse(var_name);
+                                }
+                                else if (item.Key == var_name && variable_types[var_name] == "decimal")
+                                {
+                                    pluseq_left_decimal = Convert.ToDecimal(user_variables[var_name].TrimEnd(';'));
+                                }
+                                else if (decimal.TryParse(var_name, out bruh_decimal))
+                                {
+                                    pluseq_left_decimal = Convert.ToDecimal(var_name);
                                 }
                             }
                         }
