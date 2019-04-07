@@ -39,7 +39,8 @@ Bozhidar Atanasov - Main Programmer, QA, Documentation, Graphical design (Ideas 
 
 ---------------------------------------------------------------------------------------------------------  
 Линк за изтегляне / Download link:  
-//add later
+
+[LINK](https://drive.google.com/uc?export=download&id=1irO9UqmW7soa_sUy9eZhlO1GaOiWXX-F)
 
 ---------------------------------------------------------------------------------------------------------  
 Технологии/ Technologies:
