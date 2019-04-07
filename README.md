@@ -14,22 +14,42 @@ Desktop application
 До 16 години  
 Up to 16 year's old  
 ---------------------------------------------------------------------------------------------------------  
-Screenshots  
-//to do  
+**Screenshots**
+
+[screenshot 1](https://i.imgur.com/6jTGtPR.png)
+
+[screenshot 2](https://i.imgur.com/84xiAJI.png)
+
+[screenshot 3](https://i.imgur.com/WxVjNMS.png)
+
 ---------------------------------------------------------------------------------------------------------  
 Разработчици/ Develepors:  
 Ivailo Hristov - Главен програмист, графичен дизайн (Logo, UI), Документация
-               - Main programmer, graphical design (Logo, UI), Documentation
-Bojidar Atanason - Главен програмист, QA, Ментална подкрепа  
-                 - Main Programmer, QA, Mental assistance
+
+Ивайло Христов - Main programmer, graphical design (Logo, UI), Documentation
+               
+Боцжидар Атанасов - Главен програмист, QA, Ментална подкрепа, Документация 
+
+Bozhidar Atanasov - Main Programmer, QA, Mental assistance, Documentation
+                 
+---------------------------------------------------------------------------------------------------------
+Демонстрационно видео/Demonstration video
+
+[LINK](https://youtu.be/SQgGPgu0c1A)
+
 ---------------------------------------------------------------------------------------------------------  
 Линк за изтегляне / Download link:  
 //add later
+
 ---------------------------------------------------------------------------------------------------------  
-Технологии/ Technologies:  
-C# , JavaScript, Photoshop CC 2018.  
+Технологии/ Technologies:
+
+C# , JavaScript, Photoshop CC 2018.
+
 ---------------------------------------------------------------------------------------------------------  
-Сорс код/ Source code:  
+Сорс код/ Source code: 
+
 Засега остава в тайна, но ако се ноложи ще го споделим по-нататък.  
-Remains a secret for now but if we have to we'll share it later.  
+Remains a secret for now but if we have to we'll share it later.
+
 ---------------------------------------------------------------------------------------------------------  
