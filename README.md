@@ -24,13 +24,13 @@ Up to 16 year's old
 
 ---------------------------------------------------------------------------------------------------------  
 Разработчици/ Develepors:  
-Ivailo Hristov - Главен програмист, графичен дизайн (Logo, UI), Документация
+Ivailo Hristov - Главен програмист, Графичен дизайн (Logo, UI), Документация
 
-Ивайло Христов - Main programmer, graphical design (Logo, UI), Documentation
+Ивайло Христов - Main programmer, Graphical design (Logo, UI), Documentation
                
-Боцжидар Атанасов - Главен програмист, QA, Ментална подкрепа, Документация 
+Боцжидар Атанасов - Главен програмист, Документация, Графичен дизайн (Идеи и Kонструктивна критика)
 
-Bozhidar Atanasov - Main Programmer, QA, Mental assistance, Documentation
+Bozhidar Atanasov - Main Programmer, QA, Documentation, Graphical design (Ideas and Constructive criticism)
                  
 ---------------------------------------------------------------------------------------------------------
 Демонстрационно видео/ Demonstration video
