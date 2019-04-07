@@ -33,7 +33,7 @@ Ivailo Hristov - Главен програмист, графичен дизай�
 Bozhidar Atanasov - Main Programmer, QA, Mental assistance, Documentation
                  
 ---------------------------------------------------------------------------------------------------------
-Демонстрационно видео/Demonstration video
+Демонстрационно видео/ Demonstration video
 
 [LINK](https://youtu.be/SQgGPgu0c1A)
 
@@ -49,7 +49,10 @@ C# , JavaScript, Photoshop CC 2018.
 ---------------------------------------------------------------------------------------------------------  
 Сорс код/ Source code: 
 
-Засега остава в тайна, но ако се ноложи ще го споделим по-нататък.  
-Remains a secret for now but if we have to we'll share it later.
+[The master branch/master клон](https://github.com/kuftexd/auto-comment/tree/master)
+
+What is [The Official branch](https://github.com/kuftexd/auto-comment/tree/Official)/ Какво е [Official клона](https://github.com/kuftexd/auto-comment/tree/Official)?
+
+It is Bozhidar Atanasov's attempt to make an analyzer that would comment how variables would change after math equations and whether if statements were true or not, but due to time constraints he was unable to finish that feature./Това е опитът на Божидар Атанасов да направи анализатор, който да коментира как променливите ще се променят след математически уравнения и дали if изявленията са верни или не, но поради времевите ограничения той не успя да завърши тази функция.
 
 ---------------------------------------------------------------------------------------------------------  
