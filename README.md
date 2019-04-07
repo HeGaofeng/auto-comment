@@ -45,7 +45,7 @@ Bozhidar Atanasov - Main Programmer, QA, Documentation, Graphical design (Ideas 
 ---------------------------------------------------------------------------------------------------------  
 Технологии/ Technologies:
 
-C# , JavaScript, Photoshop CC 2018.
+C# , Windows Forms, Photoshop CC 2018.
 
 ---------------------------------------------------------------------------------------------------------  
 Сорс код/ Source code: 
