@@ -24,9 +24,9 @@ Up to 16 year's old
 
 ---------------------------------------------------------------------------------------------------------  
 Разработчици/ Develepors:  
-Ivailo Hristov - Главен програмист, Графичен дизайн (Logo, UI), Документация
+Ивайло Христов - Главен програмист, Графичен дизайн (Logo, UI), Документация
 
-Ивайло Христов - Main programmer, Graphical design (Logo, UI), Documentation
+Ivailo Hristov - Main programmer, Graphical design (Logo, UI), Documentation
                
 Боцжидар Атанасов - Главен програмист, Документация, Графичен дизайн (Идеи и Kонструктивна критика)
 
