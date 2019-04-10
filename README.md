@@ -11,8 +11,8 @@ As input the program takes a .cs (C# file) which shouldn't be commented because 
 Desktop application  
 ---------------------------------------------------------------------------------------------------------  
 Възрастова група/ Age group:  
-До 16 години  
-Up to 16 year's old  
+Над 16 години  
+Over 16 year's old  
 ---------------------------------------------------------------------------------------------------------  
 **Screenshots**
 
